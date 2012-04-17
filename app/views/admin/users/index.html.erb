@@ -1,0 +1,37 @@
+<div id="notice">
+  <h1>用户列表</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= flash_tag %>
+      <table class="list-generic">
+        <thead>
+          <tr>
+            <td>账号</td>
+            <td>名称</td>
+            <td>角色</td>
+            <td>账号可用</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= link_to user.account, [:admin, user] %></td>
+              <td><%= user.name %></td>
+              <td><%= human_user_role_tag user.role %></td>
+              <td><%= human_boolean_tag user.available? %></td>
+              <td><%= edit_tag user %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @users %>
+    </div>
+  </div>
+</div>

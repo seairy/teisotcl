@@ -1,0 +1,6 @@
+/.bundle
+/.project
+/Capfile
+/log/*.log
+/test
+/tmp

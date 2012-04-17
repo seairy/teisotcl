@@ -1,0 +1,37 @@
+<div id="notice">
+  <h1>文章列表</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= flash_tag %>
+      <table class="list-generic">
+        <thead>
+          <tr>
+            <td>标题</td>
+            <td>来源</td>
+            <td>前台可见</td>
+            <td>精华</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @articles.each do |article| %>
+            <tr>
+              <td><%= link_to article.title.truncate(24), [:admin, article] %></td>
+              <td><%= article.source %></td>
+              <td><%= human_boolean_tag article.visible? %></td>
+              <td><%= human_boolean_tag article.featured? %></td>
+              <td><%= edit_tag article %> <%= destroy_tag article %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @articles %>
+    </div>
+  </div>
+</div>

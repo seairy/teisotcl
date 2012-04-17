@@ -1,0 +1,30 @@
+<div id="notice">
+  <h1>编辑评审</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= form_for [:admin, @review] do |f| %>
+      <%= render "admin/shared/error_messages", :target => @review %>
+      <fieldset class="form-generic">
+        <legend>评审信息</legend>
+        <ul>
+          <li>
+            <label>名称：</label><%= f.text_field :name, :class => 'text-field' %>
+          </li>
+          <li>
+            <label>评审方式：</label><%= f.radio_button :marking, true %>打分 <%= f.radio_button :marking, false %>判断
+          </li>
+        </ul>
+      </fieldset>
+      <div class="action-generic">
+        <%= link_to '修改', '#', :onclick => "submitForm('edit_review_#{@review.id}')", :class => 'button' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

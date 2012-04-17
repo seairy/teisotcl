@@ -1,0 +1,21 @@
+<div id="notice">
+  <h1>控制面板</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title">数据统计</div>
+    <div class="content">
+      <fieldset class="form-generic">
+        <legend>论文参会报名统计</legend>
+        <ul>
+          <li>
+            <label>报名人数：</label><%= @total_participants_count %>
+          </li>
+        </ul>
+      </fieldset>
+    </div>
+  </div>
+</div>

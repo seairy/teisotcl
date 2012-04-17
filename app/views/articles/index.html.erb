@@ -1,0 +1,13 @@
+<%= generic_submenu_tag %>
+<div id="right">
+  <ul class="list-articles">
+    <% @articles.each do |article| %>
+    <li>
+      <div class="title"><%= link_to article.title, article %><span class="date"><%= human_date_tag article.displayed_at%></span></div>
+      <div class="summary"><%= raw article.content.gsub(/<.*?>/, '').truncate(200) %></div>
+    </li>
+    <% end %>
+  </ul>
+  <%= will_paginate @articles %>
+</div>
+<div class="cb"></div>

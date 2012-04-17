@@ -1,0 +1,47 @@
+<div id="notice">
+  <h1>添加评审专家</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= form_for [:admin, @participant, @participant.thesis, @rating] do |f| %>
+      <%= render "admin/shared/error_messages", :target => @rating %>
+      <fieldset class="form-generic">
+        <legend>论文信息</legend>
+        <ul>
+          <li>
+            <label>题目：</label><%= @participant.thesis.subject %>
+          </li>
+          <li>
+            <label>第一作者：</label><%= @participant.thesis.first_author %>
+          </li>
+          <li>
+            <label>第二作者：</label><%= @participant.thesis.second_author %>
+          </li>
+          <li>
+            <label>关键词：</label><%= @participant.thesis.keywords %>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset class="form-generic">
+        <legend>评审信息</legend>
+        <ul>
+          <li>
+            <label>评审类型：</label><%= f.collection_select :review_id, all_reviews, :id, :name, :class => 'text-field' %>
+          </li>
+          <li>
+            <label>评审专家：</label><%= f.collection_select :expert_id, available_experts_for(@participant.thesis), :id, :name, :class => 'text-field' %>
+          </li>
+        </ul>
+      </fieldset>
+      <div class="action-generic">
+        <%= link_to '添加', '#', :onclick => "submitForm('new_rating')", :class => 'button' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

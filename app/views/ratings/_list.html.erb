@@ -1,0 +1,9 @@
+<ul class="list-ratings">
+  <% @ratings.each do |rating| %>
+    <li>
+      <p><span class="fwb">论文题目：</span><%= link_to rating.thesis.subject, [@expert, rating] %></p>
+      <p><span class="fwb">关键词：</span><%= rating.thesis.keywords %></p>
+    </li>
+  <% end %>
+</ul>
+<%= will_paginate @ratings %>

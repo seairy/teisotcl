@@ -1,0 +1,65 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  height: 100%;
+  font-family: "微软雅黑";
+  font-size: 12px;
+}
+#header {
+  position: relative;
+  border-bottom: 1px #575C60 solid;
+  height: 50%;
+  background: #454A4E;
+  h1 {
+    position: absolute;
+    bottom: 12px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #FFF;
+  }
+}
+#content {
+  height: 50%;
+  background: #2B2F32;
+  fieldset.form {
+    padding-top: 22px;
+    border: 0;
+    ul {
+      list-style: none;
+      li {
+        float: left;
+        padding-right: 28px;
+        label {
+          padding-right: 6px;
+          color: #FFF;
+        }
+        input.text-field {
+          padding: 1px 4px;
+          width: 192px;
+        }
+      }
+    }
+  }
+  span {
+    position: absolute;
+    padding-top: 18px;
+    color: #FF0000;
+  }
+  div.action {
+    padding: 20px 30px 0 0;
+    text-align: right;
+    a {
+      padding: 3px 10px;
+      border: 1px #A6AEB5 solid;
+      background: #A6AEB5;
+      color: #FFF;
+      text-decoration: none;
+    }
+  }
+}
+div.container {
+  margin: 0 auto;
+  width: 550px;
+}

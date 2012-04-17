@@ -1,0 +1,35 @@
+<div id="notice">
+  <h1>参会者列表</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= flash_tag %>
+      <table class="list-generic">
+        <thead>
+          <tr>
+            <td>账号</td>
+            <td>中文名</td>
+            <td>工作单位</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @participants.each do |participant| %>
+            <tr>
+              <td><%= link_to participant.account, [:admin, participant] %></td>
+              <td><%= participant.chinese_name %></td>
+              <td><%= participant.company %></td>
+              <td><%= edit_tag participant %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @participants %>
+    </div>
+  </div>
+</div>

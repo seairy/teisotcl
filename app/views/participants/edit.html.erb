@@ -1,0 +1,64 @@
+<%= participant_submenu_tag %>
+<div id="right">
+  <%= flash_tag %>
+  <%= form_for @participant, :html => { :multipart => true } do |f| %>
+  <%= render "shared/error_messages", :target => @participant %>
+  <fieldset class="form-generic form-signup">
+    <legend>修改个人信息</legend>
+    <ul>
+      <li>
+        <label><span>*</span>账号：</label><%= @participant.account %>
+      </li>
+      <li>
+        <label><span>*</span>中文名：</label><%= f.text_field :chinese_name, :class => 'text-field' %>
+      </li>
+      <li>
+        <label>外文名：</label><%= f.text_field :foreign_name, :class => 'text-field' %>
+      </li>
+      <li>
+        <label><span>*</span>性别：</label><%= f.radio_button :gender, 1 %>男 <%= f.radio_button :gender, 2 %>女
+      </li>
+      <li>
+        <label><span>*</span>国籍：</label><%= f.select :nationality_id, option_groups_from_collection_for_select(all_continents, :countries, :name, :id, :name, @participant.nationality_id) %>
+      </li>
+      <li>
+        <label>联系地址：</label><%= f.text_field :address, :class => 'text-field' %>
+      </li>
+      <li>
+        <label>邮政编码：</label><%= f.text_field :postal_code, :class => 'text-field' %>
+      </li>
+      <li>
+        <label><span>*</span>座机：</label><%= f.text_field :phone, :class => 'text-field' %>
+      </li>
+      <li>
+        <label><span>*</span>手机：</label><%= f.text_field :mobile, :class => 'text-field' %>
+      </li>
+      <li>
+        <label>传真：</label><%= f.text_field :fax, :class => 'text-field' %>
+      </li>
+      <li>
+        <label><span>*</span>电子邮件：</label><%= f.text_field :email, :class => 'text-field' %>
+      </li>
+      <li>
+        <label><span>*</span>工作单位：</label><%= f.text_field :company, :class => 'text-field' %>
+      </li>
+      <li>
+        <label>职称：</label><%= f.text_field :title, :class => 'text-field' %>
+      </li>
+      <li>
+        <label>职位：</label><%= f.text_field :position, :class => 'text-field' %>
+      </li>
+      <li>
+        <label>任教国：</label><%= f.select :teaches_in_id, option_groups_from_collection_for_select(all_continents, :countries, :name, :id, :name, @participant.teaches_in_id), :include_blank => '请选择' %>
+      </li>
+      <li>
+        <label>任教单位：</label><%= f.text_field :teaches_at, :class => 'text-field' %>
+      </li>
+    </ul>
+  </fieldset>
+  <% end %>
+  <div class="action-generic">
+  <%= link_to '更新个人信息', '#', :onclick => "submitForm('edit_participant_#{@participant.id}')", :class => 'button' %>
+</div>
+</div>
+<div class="cb"></div>

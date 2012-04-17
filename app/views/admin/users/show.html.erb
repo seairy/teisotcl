@@ -1,0 +1,38 @@
+<div id="notice">
+  <h1>查看用户</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= flash_tag %>
+      <fieldset class="form-generic">
+        <legend>用户信息</legend>
+        <ul>
+          <li>
+            <label>账号：</label><%= @user.account %>
+          </li>
+          <li>
+            <label>名称：</label><%= @user.name %>
+          </li>
+          <li>
+            <label>角色：</label><%= human_user_role_tag @user.role %>
+          </li>
+          <li>
+            <label>账号可用：</label><%= human_boolean_tag @user.available? %>
+          </li>
+          <li>
+            <label>上次登录时间：</label><%= human_datetime_tag @user.last_signined_at %>
+          </li>
+        </ul>
+      </fieldset>
+      <div class="action-generic">
+        <%= link_to '编辑', edit_admin_user_path(@user), :class => 'button' %>
+        <%= link_to '返回列表', admin_users_path, :class => 'button' %>
+      </div>
+    </div>
+  </div>
+</div>

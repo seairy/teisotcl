@@ -1,0 +1,33 @@
+<div id="notice">
+  <h1>专家列表</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= flash_tag %>
+      <table class="list-generic">
+        <thead>
+          <tr>
+            <td>账号</td>
+            <td>名称</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @experts.each do |expert| %>
+            <tr>
+              <td><%= link_to expert.account, [:admin, expert] %></td>
+              <td><%= expert.name %></td>
+              <td><%= edit_tag expert %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @experts %>
+    </div>
+  </div>
+</div>

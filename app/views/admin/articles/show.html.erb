@@ -1,0 +1,42 @@
+<div id="notice">
+  <h1>查看文章</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= flash_tag %>
+      <fieldset class="form-generic">
+        <legend>文章信息</legend>
+        <ul>
+          <li>
+            <label>标题：</label><%= @article.title %>
+          </li>
+          <li>
+            <label>来源：</label><%= @article.source %>
+          </li>
+          <li>
+            <%= raw @article.content %>
+          </li>
+          <li>
+            <label>前台可见：</label><%= human_boolean_tag @article.visible %>
+          </li>
+          <li>
+            <label>精华：</label><%= human_boolean_tag @article.featured %>
+          </li>
+          <li>
+            <label>显示时间：</label><%= human_datetime_tag @article.displayed_at %>
+          </li>
+        </ul>
+      </fieldset>
+      <div class="action-generic">
+        <%= link_to '编辑', edit_admin_article_path(@article), :class => 'button' %>
+        <%= link_to '删除', [:admin, @article], confirm: '确定要删除吗？', :method => :delete, :class => 'button' %>
+        <%= link_to '返回列表', admin_articles_path, :class => 'button' %>
+      </div>
+    </div>
+  </div>
+</div>

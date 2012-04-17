@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= title_tag %>
+    <%= stylesheet_link_tag "meta", "screen", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header"></div>
+      <div id="navi">
+        <ul>
+          <li><%= link_to image_tag('navi_home.png'), root_path %></li>
+          <li><%= link_to image_tag('navi_intro.png') %></li>
+          <li><%= link_to image_tag('navi_notice.png'), articles_path %></li>
+          <li><%= link_to image_tag('navi_history.png') %></li>
+          <li><%= link_to image_tag('navi_lesson.png') %></li>
+          <li>
+            <% if participant_signined? %>
+              <%= link_to image_tag('navi_participant_mgmt.png'), dashboard_participants_path %>
+            <% else %>
+              <%= link_to image_tag('navi_participant_signin.png'), participant_signin_path %>
+            <% end %>
+          </li>
+          <li>
+            <% if expert_signined? %>
+              <%= link_to image_tag('navi_expert_mgmt.png'), dashboard_experts_path %>
+            <% else %>
+              <%= link_to image_tag('navi_expert_signin.png'), expert_signin_path %>
+            <% end %>
+          </li>
+        </ul>
+        <div class="cb"></div>
+      </div>
+      <div id="content">
+        <%= yield %>
+      </div>
+      <div id="footer">
+        <p>世界汉语教学学会 - The International Society for Chinese Language Teaching</p>
+        <p>如有任何疑问或建议请与我们联系，本站内容版权所有：世界汉语教学学会，未经许可不得转载</p>
+        <p>Copyright 1999-2012 All rights reserved</p>
+      </div>
+    </div>
+  </body>
+</html>

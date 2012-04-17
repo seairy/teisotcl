@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>第十一届国际汉语教学研讨会管理系统</title>
+    <%= stylesheet_link_tag "admin_signin", :media => "all" %>
+    <%= javascript_include_tag "application" %>
+  </head>
+  <body>
+    <%= javascript_tag do %>
+    $(document).ready(function() {
+      $("input.text-field").corner("top 6px");
+      $("input.text-field").corner("bottom 6px");
+      $("div.action a").corner("top 6px");
+      $("div.action a").corner("bottom 6px");
+    });
+    <% end %>
+    <div id="header">
+      <div class="container">
+        <h1>第十一届国际汉语教学研讨会管理系统</h1>
+      </div>
+    </div>
+    <div id="content">
+      <div class="container">
+        <%= form_tag admin_signin_path, :id => 'signin' do %>
+        <fieldset class="form">
+          <ul>
+            <li>
+              <label>账号：</label><%= text_field_tag :account, nil, :class => 'text-field' %>
+            </li>
+            <li>
+              <label>密码：</label><%= password_field_tag :password, nil, :class => 'text-field' %>
+            </li>
+          </ul>
+        </fieldset>
+        <%= content_tag 'span', flash[:alert] unless flash[:alert].blank? %>
+        <div class="action">
+          <%= link_to '登录', '#', :onclick => "submitForm('signin')", :class => 'button' %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </body>
+</html>

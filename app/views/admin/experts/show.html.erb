@@ -1,0 +1,32 @@
+<div id="notice">
+  <h1>查看专家</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= flash_tag %>
+      <fieldset class="form-generic">
+        <legend>专家信息</legend>
+        <ul>
+          <li>
+            <label>账号：</label><%= @expert.account %>
+          </li>
+          <li>
+            <label>名称：</label><%= @expert.name %>
+          </li>
+          <li>
+            <label>上次登录时间：</label><%= human_datetime_tag @expert.last_signined_at %>
+          </li>
+        </ul>
+      </fieldset>
+      <div class="action-generic">
+        <%= link_to '编辑', edit_admin_expert_path(@expert), :class => 'button' %>
+        <%= link_to '返回列表', admin_experts_path, :class => 'button' %>
+      </div>
+    </div>
+  </div>
+</div>

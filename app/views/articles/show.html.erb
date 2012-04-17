@@ -1,0 +1,11 @@
+<%= generic_submenu_tag %>
+<div id="right">
+  <div class="show-article">
+    <h3><%= @article.title %></h3>
+    <div class="source">来源：<%= @article.source %></div><div class="date">发表日期：<%= human_date_tag @article.displayed_at %></div>
+    <div class="cb"></div>
+    <div class="sperator"></div>
+    <div class="content"><%= raw @article.content %></div>
+  </div>
+</div>
+<div class="cb"></div>

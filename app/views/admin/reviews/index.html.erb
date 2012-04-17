@@ -1,0 +1,33 @@
+<div id="notice">
+  <h1>评审列表</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= flash_tag %>
+      <table class="list-generic">
+        <thead>
+          <tr>
+            <td>名称</td>
+            <td>评审方式</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reviews.each do |review| %>
+            <tr>
+              <td><%= link_to review.name, [:admin, review] %></td>
+              <td><%= human_review_way_tag review %></td>
+              <td><%= edit_tag review %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @reviews %>
+    </div>
+  </div>
+</div>

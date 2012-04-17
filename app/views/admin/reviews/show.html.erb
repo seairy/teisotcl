@@ -1,0 +1,29 @@
+<div id="notice">
+  <h1>查看评审</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= flash_tag %>
+      <fieldset class="form-generic">
+        <legend>评审信息</legend>
+        <ul>
+          <li>
+            <label>名称：</label><%= @review.name %>
+          </li>
+          <li>
+            <label>评审方式：</label><%= human_review_way_tag @review %>
+          </li>
+        </ul>
+      </fieldset>
+      <div class="action-generic">
+        <%= link_to '编辑', edit_admin_review_path(@review), :class => 'button' %>
+        <%= link_to '返回列表', admin_reviews_path, :class => 'button' %>
+      </div>
+    </div>
+  </div>
+</div>

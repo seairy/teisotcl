@@ -1,0 +1,96 @@
+<%= form_for @participant, :html => { :multipart => true } do |f| %>
+<%= render "shared/error_messages", :target => @participant %>
+<fieldset class="form-generic">
+</fieldset>
+<fieldset class="form-generic">
+  <legend>个人信息</legend>
+  <ul>
+    <li>
+      <label><span>*</span>账号：</label><%= f.text_field :account, :class => 'text-field' %><span>请输入英文、数字及下划线，并保持长度为5至16位</span>
+    </li>
+    <li>
+      <label><span>*</span>密码：</label><%= f.password_field :password, :class => 'text-field' %><span>请输入英文、数字及下划线，并保持长度为6至16位</span>
+    </li>
+    <li>
+      <label><span>*</span>密码确认：</label><%= f.password_field :password_confirmation, :class => 'text-field' %><span>请重新输入密码</span>
+    </li>
+    <li>
+      <label><span>*</span>参会类型：</label><%= f.select :attend_as, participant_type_options %>
+    </li>
+    <li>
+      <label><span>*</span>中文名：</label><%= f.text_field :chinese_name, :class => 'text-field' %><span>请输入您的真实姓名</span>
+    </li>
+    <li>
+      <label>外文名：</label><%= f.text_field :foreign_name, :class => 'text-field' %>
+    </li>
+    <li>
+      <label><span>*</span>性别：</label><%= f.radio_button :gender, 1 %>男 <%= f.radio_button :gender, 2 %>女
+    </li>
+    <li>
+      <label><span>*</span>国籍：</label><%= f.select :nationality_id, option_groups_from_collection_for_select(all_continents, :countries, :name, :id, :name) %>
+    </li>
+    <li>
+      <label>联系地址：</label><%= f.text_field :address, :class => 'text-field' %>
+    </li>
+    <li>
+      <label>邮政编码：</label><%= f.text_field :postal_code, :class => 'text-field' %>
+    </li>
+    <li>
+      <label><span>*</span>座机：</label><%= f.text_field :phone, :class => 'text-field' %><span>请按以下格式输入：区号-电话号码-分机</span>
+    </li>
+    <li>
+      <label><span>*</span>手机：</label><%= f.text_field :mobile, :class => 'text-field' %>
+    </li>
+    <li>
+      <label>传真：</label><%= f.text_field :fax, :class => 'text-field' %>
+    </li>
+    <li>
+      <label><span>*</span>电子邮件：</label><%= f.text_field :email, :class => 'text-field' %><span>请输入正确的电子邮件地址</span>
+    </li>
+    <li>
+      <label><span>*</span>工作单位：</label><%= f.text_field :company, :class => 'text-field' %>
+    </li>
+    <li>
+      <label>职称：</label><%= f.text_field :title, :class => 'text-field' %>
+    </li>
+    <li>
+      <label>职位：</label><%= f.text_field :position, :class => 'text-field' %>
+    </li>
+    <li>
+      <label>任教国：</label><%= f.select :teaches_in_id, option_groups_from_collection_for_select(all_continents, :countries, :name, :id, :name), :include_blank => '请选择' %><span>如您在海外从事汉语教学工作请填写此项</span>
+    </li>
+    <li>
+      <label>任教单位：</label><%= f.text_field :teaches_at, :class => 'text-field' %><span>如您在海外从事汉语教学工作请填写此项</span>
+    </li>
+  </ul>
+</fieldset>
+<%= f.fields_for :thesis do |tf| %>
+<fieldset class="form-generic">
+  <legend>论文信息</legend>
+  <ul>
+    <li>
+      <label><span>*</span>题目：</label><%= tf.text_field :subject, :class => 'text-field' %>
+    </li>
+    <li>
+      <label><span>*</span>第一作者：</label><%= tf.text_field :first_author, :class => 'text-field' %>
+    </li>
+    <li>
+      <label>第二作者：</label><%= tf.text_field :second_author, :class => 'text-field' %>
+    </li>
+    <li>
+      <label><span>*</span>关键词：</label><%= tf.text_field :keywords, :class => 'text-field' %><span>请用逗号分隔多个关键词</span>
+    </li>
+    <li>
+      <label><span>*</span>摘要：</label><%= tf.text_area :summary, :id => 'summary', :class => 'text-area', :onkeyup => 'countSummaryWord()' %><span id="summary-word-count-tip">当前已输入<%= @participant.thesis.summary.blank? ? 0 : @participant.thesis.summary.length %>个字符</span>
+    </li>
+    <li>
+      <label>论文：</label><%= tf.file_field :document, :class => 'file-field' %><span>请选择扩展名为doc或docx的文档</span>
+    </li>
+  </ul>
+</fieldset>
+<% end %>
+<div class="action-generic">
+  <%= link_to '填写完毕，现在注册', '#', :onclick => "submitForm('new_participant')", :class => 'button' %>
+</div>
+<% end %> 
+<div class="cb"></div>

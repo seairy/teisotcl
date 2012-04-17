@@ -1,0 +1,36 @@
+<div id="notice">
+  <h1>查看海报</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= flash_tag %>
+      <fieldset class="form-generic">
+        <legend>海报信息</legend>
+        <ul>
+          <li>
+            <label>标题：</label><%= @poster.title %>
+          </li>
+          <li>
+            <label>图片：</label><%= link_to image_tag(@poster.image.url(:thumb)), @poster.image.url, :target => '_blank' %>
+          </li>
+          <li>
+            <label>URL：</label><%= @poster.url %>
+          </li>
+          <li>
+            <label>前台可见：</label><%= human_boolean_tag @poster.visible %>
+          </li>
+        </ul>
+      </fieldset>
+      <div class="action-generic">
+        <%= link_to '编辑', edit_admin_poster_path(@poster), :class => 'button' %>
+        <%= link_to '删除', [:admin, @poster], confirm: '确定要删除吗？', :method => :delete, :class => 'button' %>
+        <%= link_to '返回列表', admin_posters_path, :class => 'button' %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<%= participant_submenu_tag %>
+<div id="right">
+  <%= form_for @participant, :html => { :multipart => true } do |f| %>
+  <%= render "shared/error_messages", :target => @participant %>
+  <%= hidden_field_tag 'edit_thesis', true %>
+  <%= f.fields_for :thesis do |tf| %>
+  <fieldset class="form-generic">
+    <legend>修改论文</legend>
+    <ul>
+      <li>
+        <label><span>*</span>题目：</label><%= tf.text_field :subject, :class => 'text-field' %>
+      </li>
+      <li>
+        <label><span>*</span>第一作者：</label><%= tf.text_field :first_author, :class => 'text-field' %>
+      </li>
+      <li>
+        <label>第二作者：</label><%= tf.text_field :second_author, :class => 'text-field' %>
+      </li>
+      <li>
+        <label><span>*</span>关键词：</label><%= tf.text_field :keywords, :class => 'text-field' %>
+      </li>
+      <li>
+        <label><span>*</span>摘要：</label><%= tf.text_area :summary, :id => 'summary', :class => 'text-area', :onkeyup => 'countSummaryWord()' %><span id="summary-word-count-tip">当前已输入<%= @participant.thesis.summary.length %>个字符</span>
+      </li>
+      <li>
+        <label>论文：</label><%= tf.file_field :document, :class => 'file-field' %>
+        <div class="thesis-document-tip">如未修改论文全文，此处留空即可。如已修改论文全文，请重新选择文档并上传。</div>
+      </li>
+    </ul>
+  </fieldset>
+  <% end %>
+  <% end %>
+  <div class="action-generic">
+    <%= link_to '更新个人信息', '#', :onclick => "submitForm('edit_participant_#{@participant.id}')", :class => 'button' %>
+  </div>
+</div>
+<div class="cb"></div>
