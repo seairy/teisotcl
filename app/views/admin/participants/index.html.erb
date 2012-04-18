@@ -12,18 +12,18 @@
       <table class="list-generic">
         <thead>
           <tr>
-            <td>账号</td>
             <td>中文名</td>
             <td>工作单位</td>
+            <td>提交日期</td>
             <td>操作</td>
           </tr>
         </thead>
         <tbody>
           <% @participants.each do |participant| %>
             <tr>
-              <td><%= link_to participant.account, [:admin, participant] %></td>
-              <td><%= participant.chinese_name %></td>
+              <td><%= link_to participant.chinese_name, [:admin, participant] %></td>
               <td><%= participant.company %></td>
+              <td><%= human_date_tag participant.created_at %></td>
               <td><%= edit_tag participant %></td>
             </tr>
           <% end %>

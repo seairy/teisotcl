@@ -2,7 +2,7 @@
 class Admin::ParticipantsController < Admin::BaseController
   
   def index
-    @participants = Participant.paginate :page => params[:page]
+    @participants = Participant.order('created_at DESC').paginate :page => params[:page]
   end
 
   def show
