@@ -13,6 +13,7 @@
         <thead>
           <tr>
             <td>论文题目</td>
+            <td>第一作者</td>
             <td>操作</td>
           </tr>
         </thead>
@@ -20,7 +21,8 @@
           <% @theses.each do |thesis| %>
             <tr>
               <td><%= link_to thesis.subject, [:admin, thesis.participant] %></td>
-              <td><%= edit_tag thesis.participant %></td>
+              <td><%= thesis.first_author %></td>
+              <td><%= edit_tag thesis.participant.truncate(35) %></td>
             </tr>
           <% end %>
         </tbody>
