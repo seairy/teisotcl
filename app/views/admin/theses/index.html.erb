@@ -20,9 +20,9 @@
         <tbody>
           <% @theses.each do |thesis| %>
             <tr>
-              <td><%= link_to thesis.subject, [:admin, thesis.participant] %></td>
+              <td><%= link_to thesis.subject.truncate(35), [:admin, thesis.participant] %></td>
               <td><%= thesis.first_author %></td>
-              <td><%= edit_tag thesis.participant.truncate(35) %></td>
+              <td><%= edit_tag thesis.participant %></td>
             </tr>
           <% end %>
         </tbody>
