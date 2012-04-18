@@ -15,4 +15,5 @@ class Participant < ActiveRecord::Base
   validates :mobile, :length => { :maximum => 100 }, :presence => true
   validates :email, :format => { :with => /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/, :message => "只能使用有效地址" }, :length => { :maximum => 200 }, :presence => true
   validates :company, :length => { :maximum => 100 }, :presence => true
+  scope :today, where(['created_at >= ? AND created_at <= ?', Time.now.beginning_of_day, Time.now.end_of_day])
 end
