@@ -76,10 +76,10 @@
             <label>备注：</label><%= @participant.remark %>
           </li>
           <li>
-            <label>提交时间：</label><%= human_datetime_for @participant.created_at %>
+            <label>提交时间：</label><%= human_datetime_tag @participant.created_at %>
           </li>
           <li>
-            <label>最后更新时间：</label><%= human_datetime_for @participant.updated_at %>
+            <label>最后更新时间：</label><%= human_datetime_tag @participant.updated_at %>
           </li>
         </ul>
       </fieldset>
