@@ -1,4 +1,4 @@
 # -*- encoding : utf-8 -*-
 class Article < ActiveRecord::Base
-  scope :available, where('visible = 1').order('created_at DESC')
+  scope :available, where('visible = 1').order('featured ASC').order('displayed_at DESC')
 end
