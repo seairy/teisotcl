@@ -52,12 +52,14 @@
               <li><%= link_to '添加海报', new_admin_poster_path %></li>
             </ul>
           </li>
+          <% if session[:user_role] == User::RoleAdmin %>
           <li><a href="#">系统管理<%= image_tag 'admin/navi_arrow.gif' %></a>
             <ul>
               <li><%= link_to '用户列表', admin_users_path %></li>
               <li><%= link_to '添加用户', new_admin_user_path %></li>
             </ul>
           </li>
+          <% end %>
         </ul>
       </div>
     </div>

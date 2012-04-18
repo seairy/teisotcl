@@ -22,6 +22,7 @@ Teisotcl::Application.routes.draw do
     end
   end
   resources :articles
+  match 'intro' => 'intro#index', :as => :intro
   match 'participant_signup' => 'participants#new', :as => :participant_signup, :via => [:get]
   match 'participant_signup' => 'participants#create', :as => :participant_signup, :via => [:post]
   match 'participant_signin' => 'sessions#new_participant', :as => :participant_signin, :via => [:get]
