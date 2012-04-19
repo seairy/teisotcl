@@ -6,6 +6,7 @@
       <a href="#"><%= image_tag 'poster_3.jpg' %></a>
       <a href="#"><%= image_tag 'poster_4.jpg' %></a>
       <a href="#"><%= image_tag 'poster_5.jpg' %></a>
+      <div>上届大会回顾：2010年8月，中国 沈阳</div>
     </div>
     <div class="thumb">
       <a class="current" href="#"><%= image_tag 'poster_1.jpg' %></a>
@@ -17,7 +18,7 @@
   </div> 
   <script type="text/javascript">
   var defaultOpts = { interval: 4000, fadeInTime: 300, fadeOutTime: 200 };
-  var _titles = $("div.thumb a");
+  var _titles = $("div#poster div.thumb a");
   var _bodies = $("div#poster div.image a");
   var _count = _titles.length;
   var _current = 0;
@@ -47,6 +48,20 @@
   _titles.hover(function() { if($(this).attr('class')!='current'){itemMouseOver(this, _titles); }else{stop();}}, go);
   _bodies.hover(stop, go);
   go();
+  
+  $(function(){
+    $('img.captify').captify({
+    speedOver: 'fast',
+    speedOut: 'normal',
+    hideDelay: 500, 
+    animation: 'always-on',   
+    prefix: '',   
+    opacity: '0.7',         
+    className: 'caption-bottom',  
+    position: 'bottom',
+    spanWidth: '100%'
+  });
+});
   </script>
   <div class="cb"></div>
   <div id="notice">
