@@ -2,6 +2,6 @@
 class Admin::ThesesController < Admin::BaseController
   
   def index
-    @theses = Thesis.paginate :page => params[:page]
+    @theses = Thesis.order('created_at DESC').paginate :page => params[:page]
   end
 end
