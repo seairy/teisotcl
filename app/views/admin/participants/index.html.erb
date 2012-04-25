@@ -12,6 +12,7 @@
       <table class="list-generic">
         <thead>
           <tr>
+            <td>序号</td>
             <td>中文名</td>
             <td>工作单位</td>
             <td>提交日期</td>
@@ -21,6 +22,7 @@
         <tbody>
           <% @participants.each do |participant| %>
             <tr>
+              <td><%= participant.id %></td>
               <td><%= link_to participant.chinese_name, [:admin, participant] %></td>
               <td><%= participant.company.truncate(20) %></td>
               <td><%= human_date_tag participant.created_at %></td>
