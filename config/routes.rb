@@ -34,6 +34,9 @@ Teisotcl::Application.routes.draw do
   namespace :admin do
     root :to => 'dashboard#index'
     resources :participants do
+      member do
+        get :reset_password
+      end
       resource :thesis do
         resources :ratings
       end
