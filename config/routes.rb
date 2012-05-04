@@ -37,6 +37,9 @@ Teisotcl::Application.routes.draw do
       member do
         get :reset_password
       end
+      collection do
+        get :search
+      end
       resource :thesis do
         resources :ratings
       end

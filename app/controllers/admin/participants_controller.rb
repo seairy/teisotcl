@@ -43,4 +43,14 @@ class Admin::ParticipantsController < Admin::BaseController
     @participant.update_attributes :password => new_password, :password_confirmation => new_password
     redirect_to [:admin, @participant], notice: "密码重置成功，新密码为#{new_password}"
   end
+  
+  def search
+    @keyword = params[:keyword].strip
+    if @keyword.blank?
+      redirect_to admin_participants_path
+    else
+      @participants = Participant.search(params[:keyword]).paginate :page => params[:page]
+      render 'result'
+    end
+  end
 end
