@@ -3,7 +3,7 @@
 </div>
 <div id="side">
   <div class="portlet">
-    <div class="title">相关功能</div>
+    <div class="title">搜索参会者</div>
     <div class="content">
       <div class="search-generic">
         <%= form_tag search_admin_participants_path, :id => 'search_participants', :method => :get do %>
@@ -11,6 +11,14 @@
           <%= link_to '搜索', '#', :onclick => "submitForm('search_participants')", :class => 'button' %>
         <% end %>
       </div>
+    </div>
+  </div>
+  <div class="portlet">
+    <div class="title">相关功能</div>
+    <div class="content">
+      <ul>
+        <li><%= link_to '导出Excel',export_participants_admin_excels_path(:format => :xls) %></li>
+      </ul>
     </div>
   </div>
 </div>

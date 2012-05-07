@@ -48,8 +48,18 @@ Teisotcl::Application.routes.draw do
     resources :experts
     resources :articles
     resources :posters
-    resources :users
+    resources :users do
+      member do
+        get :reset_password
+      end
+    end
     resources :reviews
+    resources :excels do
+      collection do
+        get :export_participants, :export_experts, :export_reviews
+      end
+    end
+    match 'excels' => 'excels', :as => :excels
     match 'signin' => 'sessions#new', :as => :signin, :via => [:get]
     match 'signin' => 'sessions#create', :as => :signin, :via => [:post]
     match 'signout' => 'sessions#destroy', :as => :signout

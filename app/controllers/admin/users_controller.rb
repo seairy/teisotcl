@@ -51,4 +51,11 @@ class Admin::UsersController < Admin::BaseController
     end
     redirect_to admin_edit_password_url
   end
+  
+  def reset_password
+    new_password = rand.to_s[-6, 6]
+    @user = User.find(params[:id])
+    @user.update_attributes :password => new_password, :password_confirmation => new_password
+    redirect_to [:admin, @user], notice: "密码重置成功，新密码为#{new_password}"
+  end
 end

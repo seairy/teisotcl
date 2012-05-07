@@ -31,6 +31,7 @@
       </fieldset>
       <div class="action-generic">
         <%= link_to '编辑', edit_admin_user_path(@user), :class => 'button' %>
+        <%= link_to '重置密码', reset_password_admin_user_path(@user), :class => 'button' %>
         <%= link_to '返回列表', admin_users_path, :class => 'button' %>
       </div>
     </div>
