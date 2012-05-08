@@ -6,6 +6,7 @@ class Admin::ExpertsController < Admin::BaseController
   end
 
   def show
+    @reviews = Review.all
     @expert = Expert.find(params[:id])
   end
 

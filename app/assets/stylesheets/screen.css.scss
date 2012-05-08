@@ -185,6 +185,14 @@ img {
       color: #F05D39;
     }
   }
+  hr {
+    margin: 12px 0;
+    border: 0;
+    border-bottom: 1px #666 dotted;
+  }
+  p {
+    line-height: 24px;
+  }
 }
 #footer {
   padding: 26px 0;
@@ -323,6 +331,28 @@ div.show-article {
 }
 div.intro {
   line-height: 22px;
+}
+table.rating-standard {
+  margin-top: 20px;
+  border: 1px #999 solid;
+  width: 100%;
+  tr {
+    th {
+      padding: 10px;
+      font-family: $head-font;
+      font-size: 14px;
+    }
+    td {
+      padding: 10px 12px;
+      background: #EEF;
+      ol {
+        padding-left: 18px;
+        li {
+          line-height: 22px;
+        }
+      }
+    }
+  }
 }
 input.text-field {
   padding: 4px;

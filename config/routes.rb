@@ -17,7 +17,7 @@ Teisotcl::Application.routes.draw do
     end
     resources :ratings do
       collection do
-        get :unrated, :approved, :unapproved
+        get :unrated, :approved, :failure, :reserved, :standard
       end
     end
   end
@@ -59,6 +59,12 @@ Teisotcl::Application.routes.draw do
       end
     end
     resources :reviews
+    resources :ratings do
+      collection do
+        get :batched_new
+        post :batched_create
+      end
+    end
     resources :excels do
       collection do
         get :export_participants, :export_experts, :export_reviews

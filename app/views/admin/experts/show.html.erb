@@ -23,6 +23,12 @@
           </li>
         </ul>
       </fieldset>
+      <% @reviews.each do |review| %>
+      <fieldset class="form-generic">
+        <legend><%= review.name %></legend>
+        <%= expert_review_tag @expert, review %>
+      </fieldset>
+      <% end %>
       <div class="action-generic">
         <%= link_to '编辑', edit_admin_expert_path(@expert), :class => 'button' %>
         <%= link_to '返回列表', admin_experts_path, :class => 'button' %>

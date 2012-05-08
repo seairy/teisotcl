@@ -67,7 +67,9 @@ module ApplicationHelper
       <ul>
         <li>#{link_to '未处理论文', unrated_expert_ratings_path(Expert.find(session[:expert_id]))}</li>
         <li>#{link_to '已通过论文', approved_expert_ratings_path(Expert.find(session[:expert_id]))}</li>
-        <li>#{link_to '未通过论文', unapproved_expert_ratings_path(Expert.find(session[:expert_id]))}</li>
+        <li>#{link_to '未通过论文', failure_expert_ratings_path(Expert.find(session[:expert_id]))}</li>
+        <li>#{link_to '备选论文', reserved_expert_ratings_path(Expert.find(session[:expert_id]))}</li>
+        <li>#{link_to '论文评审标准', standard_expert_ratings_path(Expert.find(session[:expert_id]))}</li>
       </ul>
       <h3>#{image_tag 'title_system.png'}</h3>
       <ul>
@@ -80,7 +82,14 @@ module ApplicationHelper
     review.marking? ? '打分' : '判断'
   end
   
-  def human_approved_tag approved
-    raw approved ? '<span class="cgreen">通过</span>' : '<span class="cred">未通过</span>'
+  def human_grade_tag grade
+    case grade
+    when Rating::GradeApproved
+      '<span class="cgreen">通过</span>'
+    when Rating::GradeFailure
+      '<span class="cred">未通过</span>'
+    when Rating::GradeReserved
+      '<span class="cblue">保留</span>'
+    end
   end
 end

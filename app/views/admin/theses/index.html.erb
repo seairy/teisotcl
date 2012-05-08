@@ -14,14 +14,27 @@
           <tr>
             <td>论文题目</td>
             <td>第一作者</td>
+            <td>评审信息</td>
             <td>操作</td>
           </tr>
         </thead>
         <tbody>
           <% @theses.each do |thesis| %>
             <tr>
-              <td><%= link_to thesis.subject.truncate(35), [:admin, thesis.participant] %></td>
+              <td>
+                <%= link_to thesis.subject.truncate(20), [:admin, thesis.participant], :id => "thesis-#{thesis.id}" %>
+                <%= javascript_tag do %>
+                  $("a#thesis-<%= thesis.id %>").qtip({
+                    content: "<%= thesis.subject %>",
+                    style: {
+                      name: 'light',
+                      tip: 'topLeft'
+                    }
+                  });
+                <% end %>
+              </td>
               <td><%= thesis.first_author %></td>
+              <td><%= raw human_rating_for_list_tag thesis.ratings %></td>
               <td><%= edit_tag thesis.participant %></td>
             </tr>
           <% end %>

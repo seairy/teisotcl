@@ -24,8 +24,12 @@ class RatingsController < ApplicationController
     @ratings = @expert.ratings.approved.paginate :page => params[:page], :per_page => 5
   end
   
-  def unapproved
-    @ratings = @expert.ratings.unapproved.paginate :page => params[:page], :per_page => 5
+  def failure
+    @ratings = @expert.ratings.failure.paginate :page => params[:page], :per_page => 5
+  end
+  
+  def reserved
+    @ratings = @expert.ratings.reserved.paginate :page => params[:page], :per_page => 5
   end
   
   protected

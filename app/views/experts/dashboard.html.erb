@@ -1,6 +1,13 @@
 <%= expert_submenu_tag %>
 <div id="right">
-  欢迎您，<%= session[:expert_name] %>
+  <p>欢迎您，<%= session[:expert_name] %>，<% if session[:expert_last_signined_at].blank? %>您是首次登录本系统。<% else %>您的上次登录时间为：<%= human_datetime_tag session[:expert_last_signined_at] %><% end %></p>
   <p>世界汉语教学学会秘书处感谢您的辛勤工作！</p>
+  <hr />
+  <% if @unrated_rating_count > 0 %>
+  <p>目前有<span class="cred fwb"><%= @unrated_rating_count %></span>篇论文未处理，请<%= link_to '点击此处', unrated_expert_ratings_path(Expert.find(session[:expert_id])), :class => 'cblue' %>开始进行评审。</p>
+  <% else %>
+  <p>目前没有未处理的论文。</p>
+  <% end %>
+  <p>本次大会的论文评审标准，请<%= link_to '点击此处', standard_expert_ratings_path(Expert.find(session[:expert_id])), :class => 'cblue' %>查看。</p>
 </div>
 <div class="cb"></div>

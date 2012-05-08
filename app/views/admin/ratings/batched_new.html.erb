@@ -1,0 +1,30 @@
+<div id="notice">
+  <h1>批量指派</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= flash_tag %>
+      <%= form_tag batched_create_admin_ratings_path, :id => 'batched_new_experts' do %>
+      <fieldset class="form-generic">
+        <legend>论文及专家信息</legend>
+        <ul>
+          <li>
+            <label>评审类型：</label><%= collection_select :ratings, :review_id, all_reviews, :id, :name, :class => 'text-field' %>
+          </li>
+          <li>
+            <%= text_area_tag :thesis_id_and_expert_names, nil, :class => 'text-area' %><span>论文序号、专家姓名用逗号分割</span>
+          </li>
+        </ul>
+      </fieldset>
+      <div class="action-generic">
+        <%= link_to '批量添加', '#', :onclick => "submitForm('batched_new_experts')", :class => 'button' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -24,8 +24,9 @@
           <label>评分：</label><%= f.text_field :points, :class => 'text-field' %>
         <% else %>
           <label>审核：</label>
-          <%= f.radio_button :approved, true, :checked => true %><span class="cgreen">通过</span>
-          <%= f.radio_button :approved, false %><span class="cred">不通过</span>
+          <%= f.radio_button :grade, Rating::GradeApproved, :checked => true %><span class="cgreen">通过</span>
+          <%= f.radio_button :grade, Rating::GradeFailure %><span class="cred">不通过</span>
+          <%= f.radio_button :grade, Rating::GradeReserved %><span class="cblue">备选</span>
         <% end %>
       </li>
       <li>

@@ -8,17 +8,17 @@
   <div class="portlet">
     <div class="title"></div>
     <div class="content">
-      <%= form_tag batched_create_admin_experts_path, :id => 'batched_new_experts' do %>
+      <%= form_tag batched_create_admin_experts_path, :id => 'batched_new_ratings' do %>
       <fieldset class="form-generic">
         <legend>专家信息</legend>
         <ul>
           <li>
-            <label>账号与密码：</label><%= text_area_tag :account_and_passwords, nil, :class => 'text-area' %><span>账号和密码用逗号分割</span>
+            <%= text_area_tag :account_and_passwords, nil, :class => 'text-area' %><span>账号和密码用逗号分割</span>
           </li>
         </ul>
       </fieldset>
       <div class="action-generic">
-        <%= link_to '批量添加', '#', :onclick => "submitForm('batched_new_experts')", :class => 'button' %>
+        <%= link_to '批量添加', '#', :onclick => "submitForm('batched_new_ratings')", :class => 'button' %>
       </div>
       <% end %>
     </div>
