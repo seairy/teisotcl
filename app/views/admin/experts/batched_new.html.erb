@@ -1,0 +1,26 @@
+<div id="notice">
+  <h1>批量添加专家</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= form_tag batched_create_admin_experts_path, :id => 'batched_new_experts' do %>
+      <fieldset class="form-generic">
+        <legend>专家信息</legend>
+        <ul>
+          <li>
+            <label>账号与密码：</label><%= text_area_tag :account_and_passwords, nil, :class => 'text-area' %><span>账号和密码用逗号分割</span>
+          </li>
+        </ul>
+      </fieldset>
+      <div class="action-generic">
+        <%= link_to '批量添加', '#', :onclick => "submitForm('batched_new_experts')", :class => 'button' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

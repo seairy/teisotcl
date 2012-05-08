@@ -25,6 +25,12 @@ class Admin::ExpertsController < Admin::BaseController
       render action: 'new'
     end
   end
+  
+  def batched_create
+    account_and_passwords = params[:account_and_passwords].split(/[\r\n]/).map{|aap| aap.strip unless aap.strip.blank?}.compact
+    Expert.batched_create account_and_passwords
+    redirect_to admin_experts_url, :notice => '批量添加成功'
+  end
 
   def update
     @expert = Expert.find(params[:id])

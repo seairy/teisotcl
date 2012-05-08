@@ -45,7 +45,12 @@ Teisotcl::Application.routes.draw do
       end
     end
     resources :theses
-    resources :experts
+    resources :experts do
+      collection do
+        get :batched_new
+        post :batched_create
+      end
+    end
     resources :articles
     resources :posters
     resources :users do

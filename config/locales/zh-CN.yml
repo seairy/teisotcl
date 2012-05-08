@@ -195,6 +195,9 @@ zh-CN:
     next_label: 下一页
   
   activerecord:
+    errors:
+      messages:
+        record_invalid: ! '验证失败: %{errors}'
     attributes:
       user:
         account: 账号
