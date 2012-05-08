@@ -3,6 +3,11 @@ class Rating < ActiveRecord::Base
   belongs_to :review
   belongs_to :thesis
   belongs_to :expert
+  validates :opinion, :presence => true, :if => :disagree?
+  
+  def disagree?
+    grade == GradeFailure
+  end
   
   class << self
     def batched_create review_id, thesis_id_and_expert_names

@@ -2,6 +2,7 @@
 <div id="right">
   <%= flash_tag %>
   <%= form_for [@expert, @rating] do |f| %>
+  <%= render "shared/error_messages", :target => @rating %>
   <fieldset class="form-generic">
     <legend>论文信息</legend>
     <ul>
