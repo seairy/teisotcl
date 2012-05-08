@@ -4,7 +4,7 @@
   <p>世界汉语教学学会秘书处感谢您的辛勤工作！</p>
   <hr />
   <% if @unrated_rating_count > 0 %>
-  <p>目前有<span class="cred fwb"><%= @unrated_rating_count %></span>篇论文未处理，请<%= link_to '点击此处', unrated_expert_ratings_path(Expert.find(session[:expert_id])), :class => 'cblue' %>开始进行评审。</p>
+  <p>目前有<span class="cred fwb"><%= @unrated_rating_count %></span>篇论文摘要未处理，请<%= link_to '点击此处', unrated_expert_ratings_path(Expert.find(session[:expert_id])), :class => 'cblue' %>开始进行评审。</p>
   <% else %>
   <p>目前没有未处理的论文。</p>
   <% end %>
