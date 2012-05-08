@@ -33,7 +33,7 @@
                   });
                 <% end %>
               </td>
-              <td><%= thesis.first_author %></td>
+              <td><%= thesis.first_author.truncate(4) %></td>
               <td><%= raw human_rating_for_list_tag thesis.ratings %></td>
               <td><%= edit_tag thesis.participant %></td>
             </tr>
