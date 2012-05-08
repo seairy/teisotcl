@@ -16,6 +16,12 @@ class Admin::RatingsController < Admin::BaseController
     end
   end
   
+  def destroy
+    @rating = Rating.find(params[:id])
+    @rating.destroy
+    redirect_to [:admin, @participant], notice: '删除成功'
+  end
+  
   protected
   def find_participant
     @participant = Participant.find params[:participant_id]

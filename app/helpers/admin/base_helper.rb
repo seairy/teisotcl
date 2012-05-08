@@ -78,7 +78,7 @@ module Admin::BaseHelper
       thesis.ratings.for_review(review).each do |rating|
         output += "<li><label>#{rating.expert.name}：</label>"
         if rating.rated_at.blank?
-          output += "<span class=\"cred\">尚未评审</span></li>"
+          output += "<span class=\"cred\">尚未评审</span> #{link_to '[删除]', admin_participant_thesis_rating_url(thesis.participant, rating), confirm: '确定要删除吗？', method: :delete}</li>"
         else
           if review.marking?
             output += "#{rating.points}</li>"
