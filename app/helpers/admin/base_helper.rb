@@ -89,6 +89,10 @@ module Admin::BaseHelper
     end
   end
   
+  def human_teaches_in_tag participant
+    participant.teaches_in.blank? ? '无' : participant.teaches_in.name
+  end
+  
   def thesis_review_tag thesis, review
     output = '<ul>'
     if thesis.ratings.for_review(review).blank?
