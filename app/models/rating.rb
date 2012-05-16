@@ -11,6 +11,14 @@ class Rating < ActiveRecord::Base
     grade == GradeFailure
   end
   
+  def rated
+    where('rated_at IS NOT NULL')
+  end
+  
+  def unrate
+    where('rated_at IS NULL')
+  end
+  
   class << self
     def batched_create review_id, thesis_id_and_expert_names
       thesis_id_and_expert_names.each do |tiaen|
