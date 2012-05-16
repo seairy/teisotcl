@@ -4,6 +4,8 @@ class Rating < ActiveRecord::Base
   belongs_to :thesis
   belongs_to :expert
   validates :opinion, :presence => true, :if => :disagree?
+  scope :rated, where('rated_at IS NOT NULL')
+  scope :unrate, where('rated_at IS NULL')
   
   def disagree?
     grade == GradeFailure

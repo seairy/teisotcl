@@ -4,5 +4,7 @@ class Admin::DashboardController < Admin::BaseController
   def index
     @total_participants_count = Participant.all.count
     @today_participants_count = Participant.today.count
+    @rated_count = Rating.rated.count
+    @unrate_count = Rating.unrate.count
   end
 end
