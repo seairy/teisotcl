@@ -4,7 +4,7 @@ class Participant < ActiveRecord::Base
   has_secure_password
   belongs_to :nationality, :class_name => 'Country'
   belongs_to :teaches_in, :class_name => 'Country'
-  has_one :thesis
+  has_one :thesis, :dependent => :destroy
   accepts_nested_attributes_for :thesis
   validates :account, :format => { :with => /\A[a-zA-Z0-9_]+\z/, :message => "只能使用英文、数字及下划线" }, :length => { :in => 5..16 }, :uniqueness => true, :presence => true
   validates :password, :password_confirmation, :format => { :with => /\A[a-zA-Z0-9_]+\z/, :message => "只能使用英文、数字及下划线" }, :length => { :in => 6..16 }, :presence => true, :on => :create

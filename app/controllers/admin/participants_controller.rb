@@ -37,6 +37,13 @@ class Admin::ParticipantsController < Admin::BaseController
     end
   end
   
+  def destroy
+    @participant = Participant.find(params[:id])
+    Operation.create({ :user_id => session[:user_id], :participant_id => @participant.id, :chinese_name => @participant.chinese_name, :subject => @participant.thesis.subject })
+    @participant.destroy
+    redirect_to admin_participants_url, notice: '删除成功'
+  end
+  
   def reset_password
     new_password = rand.to_s[-6, 6]
     @participant = Participant.find(params[:id])

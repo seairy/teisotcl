@@ -44,7 +44,7 @@
               <td><%= link_to participant.chinese_name, [:admin, participant] %></td>
               <td><%= participant.company.truncate(20) %></td>
               <td><%= human_date_tag participant.created_at %></td>
-              <td><%= edit_tag participant %></td>
+              <td><%= edit_tag participant %> <%= destroy_tag participant %></td>
             </tr>
           <% end %>
         </tbody>
