@@ -17,4 +17,12 @@ class Participant < ActiveRecord::Base
   validates :company, :length => { :maximum => 100 }, :presence => true
   scope :today, where(['created_at >= ? AND created_at <= ?', Time.now.beginning_of_day, Time.now.end_of_day])
   scope :search, lambda{ |keywords| where("chinese_name LIKE '%#{keywords}%' OR foreign_name LIKE '%#{keywords}%' OR company LIKE '%#{keywords}%'") }
+  
+  class << self
+    def signup_date_chart
+      Date.new(2012, 4, 18).upto(Date.new(2012, 5, 28)).map do |d|
+        "[\"#{d.strftime('%m/%d')}\", #{where(['created_at >= ? AND created_at <= ?', d.beginning_of_day, d.end_of_day]).count}]"
+      end.join(', ')
+    end
+  end
 end
