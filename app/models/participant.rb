@@ -27,7 +27,7 @@ class Participant < ActiveRecord::Base
     
     def nationality_chart
       select('count(*) count, nationality_id').group('nationality_id').all.map do |pa|
-        "[\"#{pa.nationality.name}\", #{pa.count}]"
+        "[\"#{pa.nationality.name}（#{pa.count}人）\", #{pa.count}]"
       end.join(', ')
     end
   end
