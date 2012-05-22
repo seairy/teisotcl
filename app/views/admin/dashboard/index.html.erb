@@ -30,12 +30,11 @@
           </li>
         </ul>
       </fieldset>
-      <fieldset class="form-generic">
-        <legend>报名日期统计</legend>
-        <script type="text/javascript">
+      <script type="text/javascript">
           google.load("visualization", "1", {packages:["corechart"]});
-          google.setOnLoadCallback(drawChart);
-          function drawChart() {
+          google.setOnLoadCallback(drawSignupDateChart);
+          google.setOnLoadCallback(drawNationalityChart);
+          function drawSignupDateChart() {
             var data = google.visualization.arrayToDataTable([
               ['日期', '报名人数'],
               <%= raw @signup_date_chart %>
@@ -45,11 +44,30 @@
               title: '报名日期及人数增长图表'
             };
 
-            var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+            var chart = new google.visualization.LineChart(document.getElementById('signup-date-chart-div'));
+            chart.draw(data, options);
+          }
+          function drawNationalityChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['国籍', '人数'],
+              <%= raw @nationality_chart %>
+            ]);
+
+            var options = {
+              title: 'My Daily Activities'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('nationality-chart-div'));
             chart.draw(data, options);
           }
         </script>
-        <div id="chart_div" style="width: 700px; height: 400px;"></div>
+      <fieldset class="form-generic">
+        <legend>报名日期统计</legend>
+        <div id="signup-date-chart-div" style="width: 700px; height: 400px;"></div>
+      </fieldset>
+      <fieldset class="form-generic">
+        <legend>参会者国籍统计</legend>
+        <div id="nationality-chart-div" style="width: 700px; height: 400px;"></div>
       </fieldset>
     </div>
   </div>

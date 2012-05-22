@@ -7,5 +7,6 @@ class Admin::DashboardController < Admin::BaseController
     @rated_count = Rating.rated.count
     @unrate_count = Rating.unrate.count
     @signup_date_chart = Participant.signup_date_chart
+    @nationality_chart = Participant.nationality_chart
   end
 end

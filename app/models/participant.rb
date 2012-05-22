@@ -24,5 +24,11 @@ class Participant < ActiveRecord::Base
         "[\"#{d.strftime('%m/%d')}\", #{where(['created_at >= ? AND created_at <= ?', d.beginning_of_day, d.end_of_day]).count}]"
       end.join(', ')
     end
+    
+    def nationality_chart
+      select('count(*) count, nationality_id').group('nationality_id').all.map do |pa|
+        "[\"#{pa.nationality.name}\", #{pa.count}]"
+      end.join(', ')
+    end
   end
 end
