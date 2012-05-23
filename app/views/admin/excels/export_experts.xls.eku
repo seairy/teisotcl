@@ -1,0 +1,10 @@
+__filename = "all_experts_#{Time.now.strftime '%Y%m%d%H%M'}.xls"
+
+title_format = Spreadsheet::Format.new(:color => :blue, :weight => :bold)
+
+sheet = xls.create_worksheet :name => '参会者'
+sheet.row(0).concat %w{序号 名称 指派论文（篇） 已评审论文（篇） 未评审论文（篇）}
+sheet.row(0).default_format = title_format
+@experts.each_with_index do |p, i|
+  sheet.update_row i + 1, p.id, p.name, p.ratings.count, p.ratings.rated.count, p.ratings.unrate.count
+end

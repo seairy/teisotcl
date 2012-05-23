@@ -8,7 +8,8 @@ class Admin::ExcelsController < Admin::BaseController
   end
   
   def export_experts
-    
+    @experts = Expert.all
+    respond_with @experts
   end
   
   def export_reviews
