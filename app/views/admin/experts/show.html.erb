@@ -31,6 +31,7 @@
       <% end %>
       <div class="action-generic">
         <%= link_to '编辑', edit_admin_expert_path(@expert), :class => 'button' %>
+        <%= link_to '重置密码', reset_password_admin_expert_path(@expert), :confirm => '确定要重置密码吗？', :class => 'button' %>
         <%= link_to '返回列表', admin_experts_path, :class => 'button' %>
       </div>
     </div>

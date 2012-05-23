@@ -41,4 +41,11 @@ class Admin::ExpertsController < Admin::BaseController
       render action: 'edit'
     end
   end
+  
+  def reset_password
+    new_password = rand.to_s[-6, 6]
+    @expert = Expert.find(params[:id])
+    @expert.update_attributes :password => new_password, :password_confirmation => new_password
+    redirect_to [:admin, @expert], notice: "密码重置成功，新密码为#{new_password}"
+  end
 end

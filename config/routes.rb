@@ -44,8 +44,15 @@ Teisotcl::Application.routes.draw do
         resources :ratings
       end
     end
-    resources :theses
+    resources :theses do
+      collection do
+        get :search
+      end
+    end
     resources :experts do
+      member do
+        get :reset_password
+      end
       collection do
         get :batched_new
         post :batched_create

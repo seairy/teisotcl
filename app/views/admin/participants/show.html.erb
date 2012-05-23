@@ -119,7 +119,8 @@
       <% end %>
       <div class="action-generic">
         <%= link_to '编辑', edit_admin_participant_path(@participant), :class => 'button' %>
-        <%= link_to '重置密码', reset_password_admin_participant_path(@participant), :class => 'button' %>
+        <%= link_to '重置密码', reset_password_admin_participant_path(@participant), :confirm => '确定要重置密码吗？', :class => 'button' %>
+        <%= link_to '删除', [:admin, @participant], confirm: '确定要删除吗？', :method => :delete, :class => 'button' %>
         <%= link_to '返回列表', admin_participants_path, :class => 'button' %>
       </div>
     </div>
