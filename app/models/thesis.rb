@@ -7,6 +7,8 @@ class Thesis < ActiveRecord::Base
       where(:review_id => review.id)
     end
   end
+  scope :rated, includes(:ratings).where('ratings.rated_at IS NOT NULL').order('theses.created_at DESC')
+  scope :unrate, includes(:ratings).where('ratings.rated_at IS NULL').order('theses.created_at DESC')
   scope :search, lambda{ |keywords| where("subject LIKE '%#{keywords}%' OR first_author LIKE '%#{keywords}%' OR second_author LIKE '%#{keywords}%' OR keywords LIKE '%#{keywords}%' OR summary LIKE '%#{keywords}%'") }
   validates :subject, :length => { :maximum => 250 }, :presence => true
   validates :first_author, :length => { :maximum => 50 }, :presence => true

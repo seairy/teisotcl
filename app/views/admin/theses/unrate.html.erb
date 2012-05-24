@@ -1,0 +1,46 @@
+<div id="notice">
+  <h1>未评审论文列表</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title">共<%= @theses.count %>篇</div>
+    <div class="content">
+      <%= flash_tag %>
+      <table class="list-generic">
+        <thead>
+          <tr>
+            <td>论文题目</td>
+            <td>第一作者</td>
+            <td>关键词</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @theses.each do |thesis| %>
+            <tr>
+              <td>
+                <%= link_to thesis.subject.truncate(20), [:admin, thesis.participant], :id => "thesis-#{thesis.id}" %>
+                <%= javascript_tag do %>
+                  $("a#thesis-<%= thesis.id %>").qtip({
+                    content: "<%= thesis.subject %>",
+                    style: {
+                      name: 'light',
+                      tip: 'topLeft'
+                    }
+                  });
+                <% end %>
+              </td>
+              <td><%= thesis.first_author.truncate(4) %></td>
+              <td><%= thesis.keywords.truncate(12) %></td>
+              <td><%= edit_tag thesis.participant %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @theses %>
+    </div>
+  </div>
+</div>

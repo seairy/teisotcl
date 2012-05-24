@@ -46,7 +46,7 @@ Teisotcl::Application.routes.draw do
     end
     resources :theses do
       collection do
-        get :search
+        get :rated, :unrate, :search
       end
     end
     resources :experts do

@@ -12,11 +12,11 @@ class Rating < ActiveRecord::Base
   end
   
   def rated
-    where('rated_at IS NOT NULL')
+    Rating.where('rated_at IS NOT NULL')
   end
   
   def unrate
-    where('rated_at IS NULL')
+    Rating.where('rated_at IS NULL')
   end
   
   class << self
