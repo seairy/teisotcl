@@ -1,3 +1,4 @@
+# -*- encoding : utf-8 -*-
 class Rating < ActiveRecord::Base
   GradeApproved, GradeFailure, GradeReserved = 1, 2, 3
   belongs_to :review
@@ -12,11 +13,27 @@ class Rating < ActiveRecord::Base
   end
   
   def rated
-    Rating.where('rated_at IS NOT NULL')
+    where('rated_at IS NOT NULL')
   end
   
   def unrate
-    Rating.where('rated_at IS NULL')
+    where('rated_at IS NULL')
+  end
+  
+  def human_result
+    if rated_at.blank?
+      "未评审"
+    else
+      if review.marking?
+        "#{points}分"
+      else
+        case grade
+        when GradeApproved then "通过"
+        when GradeFailure then "不通过"
+        when GradeReserved then "保留"
+        end
+      end
+    end
   end
   
   class << self
