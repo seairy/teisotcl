@@ -2,6 +2,7 @@
 class ParticipantsController < ApplicationController
   before_filter :authenticate_participant, :except => [:new, :create]
   before_filter :authenticate_participant_id, :only => [:show_thesis, :edit, :edit_thesis, :update]
+  before_filter :signup_expiration, :only => [:new, :create]
 
   def dashboard
     
@@ -70,5 +71,9 @@ class ParticipantsController < ApplicationController
     if session[:participant_id].blank?
       redirect_to participant_signin_url
     end
+  end
+  
+  def signup_expiration
+    render 'expired'
   end
 end
