@@ -24,7 +24,7 @@
           <tr>
             <td>论文题目</td>
             <td>第一作者</td>
-            <td>评审信息</td>
+            <td>综合评审信息</td>
             <td>操作</td>
           </tr>
         </thead>
@@ -32,7 +32,7 @@
           <% @theses.each do |thesis| %>
             <tr>
               <td>
-                <%= link_to thesis.subject.truncate(20), [:admin, thesis.participant], :id => "thesis-#{thesis.id}" %>
+                <%= link_to thesis.subject.truncate(32), [:admin, thesis.participant], :id => "thesis-#{thesis.id}" %>
                 <%= javascript_tag do %>
                   $("a#thesis-<%= thesis.id %>").qtip({
                     content: "<%= thesis.subject %>",
@@ -44,7 +44,7 @@
                 <% end %>
               </td>
               <td><%= thesis.first_author.truncate(4) %></td>
-              <td><%= raw human_rating_for_list_tag thesis.ratings %></td>
+              <td><%= raw human_general_rating_tag thesis %></td>
               <td><%= edit_tag thesis.participant %></td>
             </tr>
           <% end %>

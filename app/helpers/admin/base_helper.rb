@@ -89,6 +89,10 @@ module Admin::BaseHelper
     end
   end
   
+  def human_general_rating_tag thesis
+    thesis.summary_approved? ? '<span class="cgreen">通过</span>' : '<span class="cred">未通过</span>'
+  end
+  
   def human_teaches_in_tag participant
     participant.teaches_in.blank? ? '无' : participant.teaches_in.name
   end

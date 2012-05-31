@@ -108,6 +108,9 @@
           <li>
             <label>论文：</label><%= human_thesis_document_tag @participant.thesis.document %>
           </li>
+          <li>
+            <label>摘要综合评审：</label><%= raw human_general_rating_tag @participant.thesis %>
+          </li>
         </ul>
       </fieldset>
       <% @reviews.each do |review| %>
