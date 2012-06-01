@@ -1,5 +1,14 @@
 <%= participant_submenu_tag %>
 <div id="right">
-  欢迎您，<%= session[:participant_chinese_name] %>
+  <p>欢迎您，<%= session[:participant_chinese_name] %></p>
+  <% if @participant.thesis.summary_approved? %>
+    <p>祝贺您！</p>
+    <p>您报名参会的论文摘要已经通过专家评审!</p>
+    <p>请您依照<a href="/articles/7" target="_blank" class="cred">论文体例要求</a>，准备会议论文。</p>
+  <% else %>
+    <p>感谢您对第十一届国际汉语教学研讨会的关注和大力支持！</p>
+    <p>很遗憾，您报名参会的论文摘要没有通过专家评审。</p>
+    <p>欢迎您继续关注本届研讨会！</p>
+  <% end %>
 </div>
 <div class="cb"></div>

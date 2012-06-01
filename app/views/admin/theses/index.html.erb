@@ -32,7 +32,7 @@
           <% @theses.each do |thesis| %>
             <tr>
               <td>
-                <%= link_to thesis.subject.truncate(32), [:admin, thesis.participant], :id => "thesis-#{thesis.id}" %>
+                <%= link_to thesis.subject.truncate(30), [:admin, thesis.participant], :id => "thesis-#{thesis.id}" %>
                 <%= javascript_tag do %>
                   $("a#thesis-<%= thesis.id %>").qtip({
                     content: "<%= thesis.subject %>",

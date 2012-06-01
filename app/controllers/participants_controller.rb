@@ -5,7 +5,7 @@ class ParticipantsController < ApplicationController
   before_filter :signup_expiration, :only => [:new, :create]
 
   def dashboard
-    
+    @participant = Participant.find(session[:participant_id])
   end
   
   def show_thesis
