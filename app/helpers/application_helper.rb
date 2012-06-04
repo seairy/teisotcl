@@ -40,6 +40,7 @@ module ApplicationHelper
       <ul>
         <li>#{link_to '修改密码', edit_password_participants_path}</li>
         <li>#{link_to '修改信息', edit_participant_path(Participant.find(session[:participant_id]))}</li>
+        <li>#{link_to '打印邀请函', invitation_participants_path}</li>
       </ul>
       <h3>#{image_tag 'title_thesis.png'}</h3>
       <ul>

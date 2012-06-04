@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class ParticipantsController < ApplicationController
   before_filter :authenticate_participant, :except => [:new, :create]
+  before_filter :approve_participant, :except => [:new, :create, :dashboard]
   before_filter :authenticate_participant_id, :only => [:show_thesis, :edit, :edit_thesis, :update]
   before_filter :signup_expiration, :only => [:new, :create]
 
@@ -60,11 +61,21 @@ class ParticipantsController < ApplicationController
     redirect_to edit_password_participants_url
   end
   
+  def invitation
+    @participant = Participant.find(session[:participant_id])
+    render :layout => nil
+  end
+  
   protected
   def authenticate_participant_id
     unless params[:id].blank?
       params[:id] = session[:participant_id] if params[:id] != session[:participant_id]
     end
+  end
+  
+  def approve_participant
+    @participant = Participant.find(session[:participant_id])
+    redirect_to dashboard_participants_url unless @participant.thesis.summary_approved?
   end
   
   def authenticate_participant

@@ -3,7 +3,7 @@ Teisotcl::Application.routes.draw do
   root :to => 'home#index'
   resources :participants do
     collection do
-      get :dashboard, :edit_password
+      get :dashboard, :edit_password, :invitation
       post :update_password
     end
     member do
