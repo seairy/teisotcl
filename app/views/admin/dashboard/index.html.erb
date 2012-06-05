@@ -12,10 +12,13 @@
     <div class="title">数据统计</div>
     <div class="content">
       <fieldset class="form-generic">
-        <legend>论文参会报名统计</legend>
+        <legend>论文参会者统计</legend>
         <ul>
           <li>
             <label>报名总人数：</label><%= @total_participants_count %>
+          </li>
+          <li>
+            <label>摘要通过审核人数：</label><%= @approved_theses_count %>
           </li>
           <li>
             <label>已提交全文人数：</label><%= @submited_theses_count %>
