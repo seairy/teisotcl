@@ -10,6 +10,7 @@ class Thesis < ActiveRecord::Base
   scope :rated, includes(:ratings).where('ratings.rated_at IS NOT NULL').order('theses.created_at DESC')
   scope :unrate, includes(:ratings).where('ratings.rated_at IS NULL').group('ratings.thesis_id').having('count(ratings.thesis_id) = 2').order('theses.created_at DESC')
   scope :search, lambda{ |keywords| where("subject LIKE '%#{keywords}%' OR first_author LIKE '%#{keywords}%' OR second_author LIKE '%#{keywords}%' OR keywords LIKE '%#{keywords}%' OR summary LIKE '%#{keywords}%'") }
+  scope :submited, where('document_file_name IS NOT NULL')
   validates :subject, :length => { :maximum => 250 }, :presence => true
   validates :first_author, :length => { :maximum => 50 }, :presence => true
   validates :keywords, :length => { :maximum => 100 }, :presence => true

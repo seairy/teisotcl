@@ -18,7 +18,7 @@
             <label>报名总人数：</label><%= @total_participants_count %>
           </li>
           <li>
-            <label>今日报名人数：</label><%= @today_participants_count %>
+            <label>已提交全文人数：</label><%= @submited_theses_count %>
           </li>
         </ul>
       </fieldset>
@@ -34,36 +34,36 @@
         </ul>
       </fieldset>
       <script type="text/javascript">
-          google.load("visualization", "1", {packages:["corechart"]});
-          google.setOnLoadCallback(drawSignupDateChart);
-          google.setOnLoadCallback(drawNationalityChart);
-          function drawSignupDateChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['日期', '报名人数'],
-              <%= raw @signup_date_chart %>
-            ]);
+        google.load("visualization", "1", {packages:["corechart"]});
+        google.setOnLoadCallback(drawSignupDateChart);
+        google.setOnLoadCallback(drawNationalityChart);
+        function drawSignupDateChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['日期', '报名人数'],
+            <%= raw @signup_date_chart %>
+          ]);
 
-            var options = {
-              title: '报名日期及人数增长图表'
-            };
+          var options = {
+            title: '报名日期及人数增长图表'
+          };
 
-            var chart = new google.visualization.LineChart(document.getElementById('signup-date-chart-div'));
-            chart.draw(data, options);
-          }
-          function drawNationalityChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['国籍', '人数'],
-              <%= raw @nationality_chart %>
-            ]);
+          var chart = new google.visualization.LineChart(document.getElementById('signup-date-chart-div'));
+          chart.draw(data, options);
+        }
+        function drawNationalityChart() {
+          var data = google.visualization.arrayToDataTable([
+            ['国籍', '人数'],
+            <%= raw @nationality_chart %>
+          ]);
 
-            var options = {
-              title: '参会者国籍分布图表'
-            };
+          var options = {
+            title: '参会者国籍分布图表'
+          };
 
-            var chart = new google.visualization.PieChart(document.getElementById('nationality-chart-div'));
-            chart.draw(data, options);
-          }
-        </script>
+          var chart = new google.visualization.PieChart(document.getElementById('nationality-chart-div'));
+          chart.draw(data, options);
+        }
+      </script>
       <fieldset class="form-generic">
         <legend>报名日期统计</legend>
         <div id="signup-date-chart-div" style="width: 700px; height: 400px;"></div>
