@@ -92,7 +92,7 @@
             <label>论文：</label><%= tf.file_field :document, :class => 'file-field' %>
           </li>
           <li>
-            <label>摘要综合评审：</label><%= tf.text_field :summary_approved, 1 %>通过 <%= tf.text_field :summary_approved, 0 %>未通过
+            <label>摘要综合评审：</label><%= tf.radio_button :summary_approved, 1 %>通过 <%= tf.radio_button :summary_approved, 0 %>未通过
           </li>
         </ul>
       </fieldset>
