@@ -16,6 +16,7 @@ class Participant < ActiveRecord::Base
   validates :email, :format => { :with => /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/, :message => "只能使用有效地址" }, :length => { :maximum => 200 }, :presence => true
   validates :company, :length => { :maximum => 100 }, :presence => true
   scope :today, where(['created_at >= ? AND created_at <= ?', Time.now.beginning_of_day, Time.now.end_of_day])
+  scope :approved, includes(:thesis).where('theses.summary_approved = 1')
   scope :search, lambda{ |keywords| where("chinese_name LIKE '%#{keywords}%' OR foreign_name LIKE '%#{keywords}%' OR company LIKE '%#{keywords}%'") }
   
   class << self

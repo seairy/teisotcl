@@ -13,6 +13,10 @@ class Admin::ThesesController < Admin::BaseController
     @theses = Thesis.unrate.paginate :page => params[:page]
   end
   
+  def submited
+    @theses = Thesis.submited.approved.paginate :page => params[:page]
+  end
+  
   def search
     @keyword = params[:keyword].strip
     if @keyword.blank?

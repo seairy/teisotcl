@@ -46,7 +46,7 @@ Teisotcl::Application.routes.draw do
     end
     resources :theses do
       collection do
-        get :rated, :unrate, :search
+        get :rated, :unrate, :submited, :search
       end
     end
     resources :experts do
@@ -74,7 +74,7 @@ Teisotcl::Application.routes.draw do
     end
     resources :excels do
       collection do
-        get :export_participants, :export_experts, :export_reviews
+        get :export_participants, :export_approved_participants, :export_experts, :export_reviews
       end
     end
     match 'excels' => 'excels', :as => :excels

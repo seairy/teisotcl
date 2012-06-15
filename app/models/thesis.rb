@@ -16,4 +16,8 @@ class Thesis < ActiveRecord::Base
   validates :first_author, :length => { :maximum => 50 }, :presence => true
   validates :keywords, :length => { :maximum => 100 }, :presence => true
   validates :summary, :length => { :minimum => 500 }, :presence => true
+  
+  def submited?
+    !document_file_name.blank?
+  end
 end

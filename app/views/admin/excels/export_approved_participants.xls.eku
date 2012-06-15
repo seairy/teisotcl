@@ -1,0 +1,16 @@
+__filename = "all_participants_#{Time.now.strftime '%Y%m%d%H%M'}.xls"
+
+title_format = Spreadsheet::Format.new(:color => :blue, :weight => :bold)
+
+sheet = xls.create_worksheet :name => '参会者'
+sheet.row(0).concat %w{序号 账号 参会类型 中文名 外文名 性别 国籍 联系地址 邮政编码 座机 手机 传真 电子邮件 工作单位 职称 职位 任教国 任教单位 备注 提交时间 最后更新时间 论文题目 第一作者 第二作者 关键词 摘要 已提交全文 评审专家A 评审结果 评审意见 评审专家B 评审结果 评审意见}
+sheet.row(0).default_format = title_format
+@participants.each_with_index do |p, i|
+  if p.thesis.ratings.count == 2
+    first_rating = p.thesis.ratings.first
+  	second_rating = p.thesis.ratings.last
+  	sheet.update_row i + 1, p.id, p.account, human_participant_type_tag(p.attend_as), p.chinese_name, p.foreign_name, human_gender_tag(p.gender), p.nationality.name, p.address, p.postal_code, p.phone, p.mobile, p.fax, p.email, p.company, p.title, p.position, human_teaches_in_tag(p), p.teaches_at, p.remark, human_datetime_tag(p.created_at), human_datetime_tag(p.updated_at), p.thesis.subject, p.thesis.first_author, p.thesis.second_author, p.thesis.keywords, p.thesis.summary, (p.thesis.submited? ? '是' : '否'), first_rating.expert.name, first_rating.human_result, first_rating.opinion, second_rating.expert.name, second_rating.human_result, second_rating.opinion
+  else
+  	sheet.update_row i + 1, p.id, p.account, human_participant_type_tag(p.attend_as), p.chinese_name, p.foreign_name, human_gender_tag(p.gender), p.nationality.name, p.address, p.postal_code, p.phone, p.mobile, p.fax, p.email, p.company, p.title, p.position, human_teaches_in_tag(p), p.teaches_at, p.remark, human_datetime_tag(p.created_at), human_datetime_tag(p.updated_at), p.thesis.subject, p.thesis.first_author, p.thesis.second_author, p.thesis.keywords, p.thesis.summary, (p.thesis.submited? ? '是' : '否')
+  end
+end
