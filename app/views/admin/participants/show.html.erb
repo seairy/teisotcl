@@ -86,7 +86,7 @@
           </li>
         </ul>
       </fieldset>
-      <% unless @participant.thesis.blank? %>
+      <% if @participant.attend_as == Participant::AttendAsThesisAuthor and !@participant.thesis.blank? %>
       <fieldset class="form-generic">
         <legend>论文信息</legend>
         <ul>

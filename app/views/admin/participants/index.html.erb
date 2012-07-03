@@ -34,7 +34,7 @@
             <td>序号</td>
             <td>中文名</td>
             <td>工作单位</td>
-            <td>提交日期</td>
+            <td>参会类型</td>
             <td>操作</td>
           </tr>
         </thead>
@@ -44,7 +44,7 @@
               <td><%= participant.id %></td>
               <td><%= link_to participant.chinese_name, [:admin, participant] %></td>
               <td><%= participant.company.truncate(20) %></td>
-              <td><%= human_date_tag participant.created_at %></td>
+              <td><%= human_participant_type_tag participant.attend_as %></td>
               <td><%= edit_tag participant %> <%= destroy_tag participant %></td>
             </tr>
           <% end %>
