@@ -15,7 +15,7 @@
       <label><span>*</span>密码确认：</label><%= f.password_field :password_confirmation, :class => 'text-field' %><span>请重新输入密码</span>
     </li>
     <li>
-      <label><span>*</span>参会类型：</label><%= f.select :attend_as, participant_type_options %>
+      <label><span>*</span>参会类型：</label><%= f.select :attend_as, human_participant_type_options %>
     </li>
     <li>
       <label><span>*</span>中文名：</label><%= f.text_field :chinese_name, :class => 'text-field' %><span>请输入您的真实姓名</span>

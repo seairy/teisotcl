@@ -64,7 +64,7 @@ module Admin::BaseHelper
   end
   
   def participant_type_options
-    [['旁听代表', Participant::AttendAsNonvoting]]
+    [['论文代表', Participant::AttendAsThesisAuthor], ['旁听代表', Participant::AttendAsNonvoting]]
   end
   
   def human_thesis_document_tag document

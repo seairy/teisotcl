@@ -112,4 +112,8 @@ module ApplicationHelper
       '<span class="cblue">保留</span>'
     end
   end
+  
+  def human_participant_type_options
+    [['旁听代表', Participant::AttendAsNonvoting]]
+  end
 end
