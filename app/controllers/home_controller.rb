@@ -2,6 +2,6 @@
 class HomeController < ApplicationController
   
   def index
-    @articles = Article.available.limit(5)
+    @articles = Article.available.limit(8)
   end
 end
