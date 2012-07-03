@@ -58,12 +58,13 @@ module Admin::BaseHelper
   
   def human_participant_type_tag participant_attend_as
     case participant_attend_as
-    when Participant::AttendAsThesisAuthor then '论文参会'
+    when Participant::AttendAsThesisAuthor then '论文代表'
+    when Participant::AttendAsNonvoting then '旁听代表'
     end
   end
   
   def participant_type_options
-    [['论文参会', Participant::AttendAsThesisAuthor]]
+    [['旁听代表', Participant::AttendAsNonvoting]]
   end
   
   def human_thesis_document_tag document

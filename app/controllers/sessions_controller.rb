@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
         session[:participant_id] = participant.id
         session[:participant_chinese_name] = participant.chinese_name
         session[:participant_last_signined_at] = participant.last_signined_at
+        session[:participant_attend_as] = participant.attend_as
         redirect_to dashboard_participants_url
       else
         redirect_to participant_signin_url(:account => params[:account]), :flash => { :invalid_password => '密码输入不正确，请检查' }

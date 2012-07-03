@@ -35,27 +35,46 @@ module ApplicationHelper
   end
 
   def participant_submenu_tag
-    raw "<div id=\"submenu\">
-      <h3>#{image_tag 'title_information.png'}</h3>
-      <ul>
-        <li>#{link_to '修改密码', edit_password_participants_path}</li>
-        <li>#{link_to '修改信息', edit_participant_path(Participant.find(session[:participant_id]))}</li>
-        <li>#{link_to '打印邀请函', invitation_participants_path}</li>
-      </ul>
-      <h3>#{image_tag 'title_thesis.png'}</h3>
-      <ul>
-        <li>#{link_to '查看论文', show_thesis_participant_path(Participant.find(session[:participant_id]))}</li>
-        <li>#{link_to '修改论文', edit_thesis_participant_path(Participant.find(session[:participant_id]))}</li>
-      </ul>
-      <h3>#{image_tag 'title_hotel.png'}</h3>
-      <ul>
-        <li>#{link_to '尚未开通', '#'}</li>
-      </ul>
-      <h3>#{image_tag 'title_system.png'}</h3>
-      <ul>
-        <li>#{link_to '注销', participant_signout_path}</li>
-      </ul>
-    </div>"
+    case session[:participant_attend_as]
+    when Participant::AttendAsThesisAuthor
+      raw "<div id=\"submenu\">
+        <h3>#{image_tag 'title_information.png'}</h3>
+        <ul>
+          <li>#{link_to '修改密码', edit_password_participants_path}</li>
+          <li>#{link_to '修改信息', edit_participant_path(Participant.find(session[:participant_id]))}</li>
+          <li>#{link_to '打印邀请函', invitation_participants_path}</li>
+        </ul>
+        <h3>#{image_tag 'title_thesis.png'}</h3>
+        <ul>
+          <li>#{link_to '查看论文', show_thesis_participant_path(Participant.find(session[:participant_id]))}</li>
+          <li>#{link_to '修改论文', edit_thesis_participant_path(Participant.find(session[:participant_id]))}</li>
+        </ul>
+        <h3>#{image_tag 'title_hotel.png'}</h3>
+        <ul>
+          <li>#{link_to '尚未开通', '#'}</li>
+        </ul>
+        <h3>#{image_tag 'title_system.png'}</h3>
+        <ul>
+          <li>#{link_to '注销', participant_signout_path}</li>
+        </ul>
+      </div>"
+    when Participant::AttendAsNonvoting
+      raw "<div id=\"submenu\">
+        <h3>#{image_tag 'title_information.png'}</h3>
+        <ul>
+          <li>#{link_to '修改密码', edit_password_participants_path}</li>
+          <li>#{link_to '修改信息', edit_participant_path(Participant.find(session[:participant_id]))}</li>
+        </ul>
+        <h3>#{image_tag 'title_hotel.png'}</h3>
+        <ul>
+          <li>#{link_to '尚未开通', '#'}</li>
+        </ul>
+        <h3>#{image_tag 'title_system.png'}</h3>
+        <ul>
+          <li>#{link_to '注销', participant_signout_path}</li>
+        </ul>
+      </div>"
+   end
   end
   
   def expert_submenu_tag
