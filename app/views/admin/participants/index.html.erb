@@ -17,7 +17,8 @@
     <div class="title">相关功能</div>
     <div class="content">
       <ul>
-        <li><%= link_to '导出Excel',export_participants_admin_excels_path(:format => :xls) %></li>
+        <li><%= link_to '导出论文参会Excel',export_thesis_author_participants_admin_excels_path(:format => :xls) %></li>
+        <li><%= link_to '导出旁听参会Excel',export_nonvoting_participants_admin_excels_path(:format => :xls) %></li>
         <li><%= link_to '导出审核通过Excel',export_approved_participants_admin_excels_path(:format => :xls) %></li>
       </ul>
     </div>

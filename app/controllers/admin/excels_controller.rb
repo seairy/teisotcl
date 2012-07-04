@@ -2,13 +2,18 @@
 class Admin::ExcelsController < Admin::BaseController
   respond_to :html, :xls
   
-  def export_participants
-    @participants = Participant.all
+  def export_thesis_author_participants
+    @participants = Participant.thesis_author
     respond_with @participants
   end
   
-   def export_approved_participants
-    @participants = Participant.approved.all
+  def export_nonvoting_participants
+    @participants = Participant.nonvoting
+    respond_with @participants
+  end
+  
+  def export_approved_participants
+    @participants = Participant.approved
     respond_with @participants
   end
   
