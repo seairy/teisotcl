@@ -20,6 +20,7 @@ class Participant < ActiveRecord::Base
   scope :nonvoting, where(['attend_as = ?', AttendAsNonvoting])
   scope :today, where(['created_at >= ? AND created_at <= ?', Time.now.beginning_of_day, Time.now.end_of_day])
   scope :approved, includes(:thesis).where('theses.summary_approved = 1')
+  scope :submited, includes(:thesis).where('theses.document_file_name IS NOT NULL')
   scope :search, lambda{ |keywords| where("chinese_name LIKE '%#{keywords}%' OR foreign_name LIKE '%#{keywords}%' OR company LIKE '%#{keywords}%'") }
   
   class << self

@@ -22,6 +22,7 @@ Teisotcl::Application.routes.draw do
     end
   end
   resources :articles
+  resources :bookings
   match 'intro' => 'intro#index', :as => :intro
   match 'participant_signup' => 'participants#new', :as => :participant_signup, :via => [:get]
   match 'participant_signup' => 'participants#create', :as => :participant_signup, :via => [:post]
@@ -72,9 +73,12 @@ Teisotcl::Application.routes.draw do
         post :batched_create
       end
     end
+    resources :hotels do
+      resources :rooms
+    end
     resources :excels do
       collection do
-        get :export_thesis_author_participants, :export_nonvoting_participants, :export_approved_participants, :export_experts, :export_reviews
+        get :export_thesis_author_participants, :export_nonvoting_participants, :export_approved_participants, :export_submited_participants, :export_experts, :export_reviews
       end
     end
     match 'excels' => 'excels', :as => :excels

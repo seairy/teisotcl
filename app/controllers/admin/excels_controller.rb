@@ -17,6 +17,11 @@ class Admin::ExcelsController < Admin::BaseController
     respond_with @participants
   end
   
+  def export_submited_participants
+    @participants = Participant.submited
+    respond_with @participants
+  end
+  
   def export_experts
     @experts = Expert.all
     respond_with @experts
