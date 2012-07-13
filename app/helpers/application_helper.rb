@@ -51,7 +51,7 @@ module ApplicationHelper
         </ul>
         <h3>#{image_tag 'title_hotel.png'}</h3>
         <ul>
-          <li>#{link_to '尚未开通', '#'}</li>
+          <li>#{link_to '酒店预定', ''}</li>
         </ul>
         <h3>#{image_tag 'title_system.png'}</h3>
         <ul>
@@ -67,7 +67,7 @@ module ApplicationHelper
         </ul>
         <h3>#{image_tag 'title_hotel.png'}</h3>
         <ul>
-          <li>#{link_to '尚未开通', '#'}</li>
+          <li>#{link_to '酒店预定', ''}</li>
         </ul>
         <h3>#{image_tag 'title_system.png'}</h3>
         <ul>
@@ -115,5 +115,25 @@ module ApplicationHelper
   
   def human_participant_type_options
     [['旁听代表', Participant::AttendAsNonvoting]]
+  end
+  
+  def all_hotels
+    Hotel.all
+  end
+  
+  def human_room_price_and_unit_tag room
+    if room.bed_amount > 1
+      "#{room.price / room.bed_amount}元/床"
+    else
+      "#{room.price}元/间"
+    end
+  end
+  
+  def human_room_discount_price_and_unit_tag room
+    if room.bed_amount > 1
+      "#{room.discount_price / room.bed_amount}元/床"
+    else
+      "#{room.discount_price}元/间"
+    end
   end
 end

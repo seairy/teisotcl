@@ -67,8 +67,8 @@ module Admin::BaseHelper
     [['论文代表', Participant::AttendAsThesisAuthor], ['旁听代表', Participant::AttendAsNonvoting]]
   end
   
-  def human_thesis_document_tag document
-    raw !document.file? ? '尚未提交' : "#{link_to('点击下载', document.url, :target => '_blank')} （最后更新于#{Time.at(document.updated_at).strftime('%Y-%m-%d %H:%M')}）"
+  def human_thesis_document_tag thesis
+    raw !thesis.document.file? ? '尚未提交' : "#{link_to('点击下载', thesis.document_url, :target => '_blank')} （最后更新于#{Time.at(thesis.document.updated_at).strftime('%Y-%m-%d %H:%M')}）"
   end
   
   def human_rating_for_list_tag ratings
@@ -130,17 +130,19 @@ module Admin::BaseHelper
       output += '<li><label>评审工作：</label>未安排</li>'
     else
       expert.ratings.for_review(review).each do |rating|
-        output += "<li><label>论文标题：</label>#{link_to rating.thesis.subject, [:admin, rating.thesis.participant]} "
-        if rating.rated_at.blank?
-          output += "（尚未评审）</li>"
-        else
-          if review.marking?
-            output += "（#{rating.points}）</li>"
+        unless rating.thesis.blank?
+          output += "<li><label>论文标题：</label>#{link_to rating.thesis.subject, [:admin, rating.thesis.participant]} "
+          if rating.rated_at.blank?
+            output += "（尚未评审）</li>"
           else
-            output += "（#{human_grade_tag rating.grade}）</li>"
+            if review.marking?
+              output += "（#{rating.points}）</li>"
+            else
+              output += "（#{human_grade_tag rating.grade}）</li>"
+            end
           end
+          output += "<li><label>评审意见：</label>#{rating.opinion}</li>"
         end
-        output += "<li><label>评审意见：</label>#{rating.opinion}</li>"
       end
     end
     raw output += '</ul>'

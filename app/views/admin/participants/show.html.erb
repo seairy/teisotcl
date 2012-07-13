@@ -3,13 +3,13 @@
 </div>
 <div id="side">
   <div class="portlet">
-  <div class="title">相关功能</div>
-  <div class="content">
-    <ul>
-      <li><%= link_to '添加评审专家', new_admin_participant_thesis_rating_url(@participant) %></li>
-    </ul>
+    <div class="title">相关功能</div>
+    <div class="content">
+      <ul>
+        <li><%= link_to '添加评审专家', new_admin_participant_thesis_rating_url(@participant) %></li>
+      </ul>
+    </div>
   </div>
-</div>
 </div>
 <div id="main">
   <div class="portlet">
@@ -106,7 +106,7 @@
             <label>摘要：</label><%= @participant.thesis.summary %>
           </li>
           <li>
-            <label>论文：</label><%= human_thesis_document_tag @participant.thesis.document %>
+            <label>论文：</label><%= human_thesis_document_tag @participant.thesis %>
           </li>
           <li>
             <label>摘要综合评审：</label><%= raw human_general_rating_tag @participant.thesis %>
@@ -123,6 +123,7 @@
       <div class="action-generic">
         <%= link_to '编辑', edit_admin_participant_path(@participant), :class => 'button' %>
         <%= link_to '重置密码', reset_password_admin_participant_path(@participant), :confirm => '确定要重置密码吗？', :class => 'button' %>
+        <%= link_to '模拟登录', simulate_signin_admin_participant_path(@participant), :class => 'button' %>
         <%= link_to '删除', [:admin, @participant], confirm: '确定要删除吗？', :method => :delete, :class => 'button' %>
         <%= link_to '返回列表', admin_participants_path, :class => 'button' %>
       </div>

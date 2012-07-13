@@ -1,0 +1,55 @@
+<div id="notice">
+  <h1>查看酒店</h1>
+</div>
+<div id="side">
+  <div class="portlet">
+    <div class="title">相关功能</div>
+    <div class="content">
+      <ul>
+        <li><%= link_to '添加房型', new_admin_hotel_room_path(@hotel) %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= flash_tag %>
+      <fieldset class="form-generic">
+        <legend>酒店信息</legend>
+        <ul>
+          <li>
+            <label>名称：</label><%= @hotel.name %>
+          </li>
+          <li>
+            <label>地址：</label><%= @hotel.address %>
+          </li>
+          <li>
+            <label>图片：</label><%= link_to image_tag(@hotel.image.url), @hotel.image.url, :target => '_blank' %>
+          </li>
+          <li>
+            <label>简介：</label><%= @hotel.description %>
+          </li>
+        </ul>
+      </fieldset>
+      <fieldset class="form-generic">
+        <legend>房型信息</legend>
+        <ul>
+          <% @hotel.rooms.each do |room| %>
+          <li>
+            <label><%= room.name %>：</label>共<%= room.quota %>间，<%= room.quota * room.bed_amount %>个床位，原价<%= room.price %>元/间，参会价<%= room.discount_price %>元/间
+            <%= link_to '[修改]', edit_admin_hotel_room_path(@hotel, room) %>
+            <%= link_to '[删除]', admin_hotel_room_path(@hotel, room), confirm: '确定要删除吗？', method: :delete %>
+          </li>
+          <% end %>
+        </ul>
+      </fieldset>
+      <div class="action-generic">
+        <%= link_to '编辑', edit_admin_hotel_path(@hotel), :class => 'button' %>
+        <%= link_to '删除', [:admin, @hotel], confirm: '确定要删除吗？', :method => :delete, :class => 'button' %>
+        <%= link_to '返回列表', admin_hotels_path, :class => 'button' %>
+      </div>
+    </div>
+  </div>
+</div>

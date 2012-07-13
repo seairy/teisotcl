@@ -2,7 +2,14 @@
   <h1>已提交论文列表</h1>
 </div>
 <div id="side">
-  <%= render "admin/shared/shortcut" %>
+  <div class="portlet">
+    <div class="title">相关功能</div>
+    <div class="content">
+      <ul>
+        <li><%= link_to '批量下载RAR',archive_admin_theses_path %></li>
+      </ul>
+    </div>
+  </div>
 </div>
 <div id="main">
   <div class="portlet">

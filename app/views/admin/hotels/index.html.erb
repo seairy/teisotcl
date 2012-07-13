@@ -1,0 +1,31 @@
+<div id="notice">
+  <h1>酒店列表</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= flash_tag %>
+      <table class="list-generic">
+        <thead>
+          <tr>
+            <td>名称</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @hotels.each do |hotel| %>
+            <tr>
+              <td><%= link_to hotel.name, [:admin, hotel] %></td>
+              <td><%= edit_tag hotel %> <%= destroy_tag hotel %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @hotels %>
+    </div>
+  </div>
+</div>

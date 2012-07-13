@@ -60,4 +60,13 @@ class Admin::ParticipantsController < Admin::BaseController
       render 'result'
     end
   end
+  
+  def simulate_signin
+    @participant = Participant.find(params[:id])
+    session[:participant_id] = @participant.id
+    session[:participant_chinese_name] = @participant.chinese_name
+    session[:participant_last_signined_at] = @participant.last_signined_at
+    session[:participant_attend_as] = @participant.attend_as
+    redirect_to dashboard_participants_url
+  end
 end

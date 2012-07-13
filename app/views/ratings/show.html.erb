@@ -13,7 +13,7 @@
         <label>关键词：</label><%= @rating.thesis.keywords %>
       </li>
       <li>
-        <label>摘要：</label><span class="summary"><%= @rating.thesis.summary %></span>
+        <label>论文下载：</label><%= @rating.thesis.keywords %></span>
       </li>
     </ul>
   </fieldset>
@@ -22,7 +22,7 @@
     <ul>
       <li>
         <% if @rating.review.marking? %>
-          <label>评分：</label><%= f.text_field :points, :class => 'text-field' %>
+          <label>评分：</label><%= f.text_field :points, :class => 'text-field' %>（0-100分）
         <% else %>
           <label>审核：</label>
           <%= f.radio_button :grade, Rating::GradeApproved, :checked => true %><span class="cgreen">通过</span>

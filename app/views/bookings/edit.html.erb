@@ -1,0 +1,54 @@
+<%= participant_submenu_tag %>
+<div id="right">
+  <%= flash_tag %>
+  <%= form_for @booking do |f| %>
+  <ul class="list-hotels">
+    <% @hotels.each do |hotel| %>
+    <li>
+      <h3><%= hotel.name %></h3>
+      <div class="address">地址：<%= hotel.address %></div>
+      <%= image_tag hotel.image.url %>
+      <div class="room">
+        <% hotel.rooms.each do |room| %>
+          <p><%= room.name %>：房价<%= human_room_price_and_unit_tag room %>，世汉学会补贴50元</p>
+          <% if room.id == @booking.room.id %>
+            <p class="action cred">已选择此房</p>
+          <% else %>
+            <% if room.full? %>
+              <p class="action cred">该房已订满</p>
+            <% else %>
+              <p class="action">选择此房 <%= f.radio_button :room_id, room.id %></p>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="description">
+        <p>注：</p>
+        <%= raw RedCloth.new(hotel.description).to_html %>
+      </div>
+      <div class="cb"></div>
+    </li>
+    <% end %>
+  </ul>
+  <fieldset class="form-generic form-booking">
+    <ul>
+      <li>
+        <label>入住日期：</label><%= f.date_select :from, :use_month_numbers => true, :start_year => 2012, :end_year => 2012, :default => { :month => 8, :day => 15} %> 至 <%= f.date_select :to, :use_month_numbers => true, :start_year => 2012, :end_year => 2012, :default => { :month => 8, :day => 18} %>
+      </li>
+      <li>
+        <label>8月15日下午 参观陕西省博物馆（门票免费，提供交通）：</label><%= f.radio_button :tour_museum, true %>去 <%= f.radio_button :tour_museum, false %>不去
+      </li>
+      <li>
+        <label>8月18日上午 参观西安兵马俑（门票150元/人，提供交通）：</label><%= f.radio_button :tour_tw, true %>去 <%= f.radio_button :tour_tw, false %>不去
+      </li>
+      <li>
+        <label>备注信息：</label><%= f.text_area :remark, :class => 'text-area' %>
+      </li>
+    </ul>
+  </fieldset>
+  <div class="action-generic">
+    <%= link_to '修改完成，提交', '#', :onclick => "submitForm('edit_booking_#{@booking.id}')", :class => 'button' %>
+  </div>
+  <% end %>
+</div>
+<div class="cb"></div>

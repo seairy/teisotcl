@@ -36,7 +36,7 @@ Teisotcl::Application.routes.draw do
     root :to => 'dashboard#index'
     resources :participants do
       member do
-        get :reset_password
+        get :reset_password, :simulate_signin
       end
       collection do
         get :search
@@ -47,7 +47,7 @@ Teisotcl::Application.routes.draw do
     end
     resources :theses do
       collection do
-        get :rated, :unrate, :submited, :search
+        get :rated, :unrate, :submited, :search, :archive
       end
     end
     resources :experts do

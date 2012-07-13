@@ -332,6 +332,32 @@ div.show-article {
     line-height: 22px;
   }
 }
+ul.list-hotels {
+  list-style: none;
+  li {
+    padding-bottom: 30px;
+    div.address {
+      padding: 8px 0;
+    }
+    img {
+      float: left;
+      padding: 1px;
+      border: 1px #CCC solid;
+    }
+    div.room {
+      float: right;
+      padding-bottom: 20px;
+      width: 320px;
+      p.action {
+        padding-bottom: 20px;
+      }
+    }
+    div.description {
+      float: right;
+      width: 320px;
+    }
+  }
+}
 div.intro {
   line-height: 22px;
 }
@@ -406,7 +432,15 @@ div.thesis-document-tip {
   padding-left: 100px;
   color: #F00;
 }
-
+fieldset.form-booking {
+  ul {
+    li {
+      label {
+        width: 200px;
+      }
+    }
+  }
+}
 p.notice {
   margin: 0 auto;
   padding: 7px 15px;

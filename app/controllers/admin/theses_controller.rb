@@ -26,4 +26,9 @@ class Admin::ThesesController < Admin::BaseController
       render 'result'
     end
   end
+  
+  def archive
+    archive_name = Thesis.archive
+    send_file "#{::Rails.root.to_s}/public/archives/#{archive_name}", :filename => archive_name, :type => 'application/octet-stream'
+  end
 end
