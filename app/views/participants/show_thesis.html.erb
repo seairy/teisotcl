@@ -20,7 +20,7 @@
         <label>摘要：</label><span class="summary"><%= @participant.thesis.summary %></span>
       </li>
       <li>
-        <label>论文：</label><%= raw @participant.thesis.document.file? ? "#{link_to('点击下载', @participant.thesis.document.url, :target => '_blank')} <span>最后更新于 #{Time.at(@participant.thesis.document.updated_at).strftime('%Y-%m-%d %H:%M')}</span>" : '尚未提交' %>
+        <label>论文：</label><%= raw @participant.thesis.document.file? ? "#{link_to('点击下载', @participant.thesis.document_url, :target => '_blank')} <span>最后更新于 #{Time.at(@participant.thesis.document.updated_at).strftime('%Y-%m-%d %H:%M')}</span>" : '尚未提交' %>
       </li>
     </ul>
   </fieldset>
