@@ -17,7 +17,7 @@ Teisotcl::Application.routes.draw do
     end
     resources :ratings do
       collection do
-        get :unrated, :approved, :failure, :reserved, :standard
+        get :unrate, :rated, :standard
       end
     end
   end
@@ -52,7 +52,7 @@ Teisotcl::Application.routes.draw do
     end
     resources :experts do
       member do
-        get :reset_password
+        get :reset_password, :simulate_signin
       end
       collection do
         get :batched_new

@@ -13,7 +13,7 @@
         <label>关键词：</label><%= @rating.thesis.keywords %>
       </li>
       <li>
-        <label>论文下载：</label><%= @rating.thesis.document_url %></span>
+        <label>论文下载：</label><%= link_to '点击下载', @rating.thesis.document_url %></span>
       </li>
     </ul>
   </fieldset>

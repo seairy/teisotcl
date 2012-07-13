@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Expert < ActiveRecord::Base
   has_secure_password
+  belongs_to :thesis
   validates :password, :password_confirmation, :format => { :with => /\A[a-zA-Z0-9_]+\z/, :message => "只能使用英文、数字及下划线" }, :length => { :in => 6..16 }, :presence => true, :on => :create
   validates :name, :length => { :maximum => 100 }, :presence => true
   has_many :ratings do
@@ -8,20 +9,12 @@ class Expert < ActiveRecord::Base
       where(:review_id => review.id)
     end
     
-    def unrated
-      where(:rated_at => nil)
+    def unrate
+      includes(:thesis).where('theses.summary_approved = 1').where(:rated_at => nil)
     end
     
-    def approved
-      where('rated_at IS NOT NULL').where(['grade = ? OR points >= 60', Rating::GradeApproved])
-    end
-    
-    def failure
-      where('rated_at IS NOT NULL').where(['grade = ? OR points < 50', Rating::GradeFailure])
-    end
-    
-    def reserved
-      where('rated_at IS NOT NULL').where(['grade = ? OR (points >= 50 AND points < 60)', Rating::GradeReserved])
+    def rated
+      includes(:thesis).where('theses.summary_approved = 1').where('rated_at IS NOT NULL')
     end
   end
   class << self

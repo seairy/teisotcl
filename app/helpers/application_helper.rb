@@ -85,10 +85,8 @@ module ApplicationHelper
       </ul>
       <h3>#{image_tag 'title_review.png'}</h3>
       <ul>
-        <li>#{link_to '未处理论文', unrated_expert_ratings_path(Expert.find(session[:expert_id]))}</li>
-        <li>#{link_to '已通过论文', approved_expert_ratings_path(Expert.find(session[:expert_id]))}</li>
-        <li>#{link_to '未通过论文', failure_expert_ratings_path(Expert.find(session[:expert_id]))}</li>
-        <li>#{link_to '备选论文', reserved_expert_ratings_path(Expert.find(session[:expert_id]))}</li>
+        <li>#{link_to '未处理论文', unrate_expert_ratings_path(Expert.find(session[:expert_id]))}</li>
+        <li>#{link_to '已处理论文', rated_expert_ratings_path(Expert.find(session[:expert_id]))}</li>
         <li>#{link_to '论文评审标准', standard_expert_ratings_path(Expert.find(session[:expert_id]))}</li>
       </ul>
       <h3>#{image_tag 'title_system.png'}</h3>

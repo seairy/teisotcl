@@ -3,7 +3,7 @@ class ExpertsController < ApplicationController
   before_filter :authenticate_expert
 
   def dashboard
-    @unrated_rating_count = Expert.find(session[:expert_id]).ratings.unrated.count
+    @unrate_rating_count = Expert.find(session[:expert_id]).ratings.for_review(Review.find(2)).unrate.count
   end
 
   def update

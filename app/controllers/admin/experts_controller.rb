@@ -48,4 +48,12 @@ class Admin::ExpertsController < Admin::BaseController
     @expert.update_attributes :password => new_password, :password_confirmation => new_password
     redirect_to [:admin, @expert], notice: "密码重置成功，新密码为#{new_password}"
   end
+  
+  def simulate_signin
+    @expert = Expert.find(params[:id])
+    session[:expert_id] = @expert.id
+    session[:expert_name] = @expert.name
+    session[:expert_last_signined_at] = @expert.last_signined_at
+    redirect_to dashboard_experts_url
+  end
 end
