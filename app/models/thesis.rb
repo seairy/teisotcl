@@ -21,8 +21,8 @@ class Thesis < ActiveRecord::Base
     def archive
       archive_name = "archive_#{Time.now.strftime('%Y_%m_%d_%H_%M_%S')}_#{rand.to_s[-8..-1]}"
       FileUtils.mkdir_p "#{::Rails.root.to_s}/public/archives/#{archive_name}"
-      Thesis.submited.each do |t|
-        FileUtils.copy t.document_path, "#{::Rails.root.to_s}/public/archives/#{archive_name}/#{t.id}_#{t.participant.chinese_name}_#{t.subject}#{t.document.original_filename.scan(/\.\w+$/)[0]}"
+      Thesis.submited.approved.each do |t|
+        FileUtils.copy t.document_path, "#{::Rails.root.to_s}/public/archives/#{archive_name}/#{t.participant.sid}_#{t.participant.chinese_name}_#{t.subject}#{t.document.original_filename.scan(/\.\w+$/)[0]}"
       end
       system "cd #{::Rails.root.to_s}/public/archives; rar a #{archive_name}.rar #{archive_name}"
       FileUtils.rm_rf "#{::Rails.root.to_s}/public/archives/#{archive_name}"
