@@ -14,7 +14,7 @@ class Admin::ThesesController < Admin::BaseController
   end
   
   def submited
-    @theses = Thesis.submited.approved.paginate :page => params[:page]
+    @theses = Thesis.submited.approved.order('document_updated_at DESC').paginate :page => params[:page]
   end
   
   def search

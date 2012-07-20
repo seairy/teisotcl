@@ -40,7 +40,7 @@
                 <% end %>
               </td>
               <td><%= human_rating_for_list_tag thesis.ratings.for_review(Review.find(2)) %></td>
-              <td><%= edit_tag thesis.participant %></td>
+              <td><%= edit_tag thesis.participant %> <%= link_to raw("#{image_tag 'admin/disk.gif'} 下载论文"), thesis.document_url, :target => '_blank' %></td>
             </tr>
           <% end %>
         </tbody>
