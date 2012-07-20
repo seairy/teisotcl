@@ -18,14 +18,21 @@ class BookingsController < ApplicationController
     @participant = Participant.find(session[:participant_id])
     if @participant.bookings.blank?
       @booking = Booking.new(params[:booking])
-      if @booking.room.full?
-        redirect_to new_booking_path, :alert => '该房型已预定满，请重新选择'
+      if @booking.room_id.blank?
+        redirect_to new_booking_path, :alert => '请选择房型'
       else
-        @booking.participant = @participant
-        if @booking.save
-          redirect_to edit_booking_path(@booking), :notice => '酒店预定成功'
+        if @booking.room.full?
+          redirect_to new_booking_path, :alert => '该房型已预定满，请重新选择'
         else
-          render action: 'new'
+          @booking.participant = @participant
+          @booking.tour_museum ||= false
+          @booking.tour_tw ||= false
+          if @booking.save
+            redirect_to edit_booking_path(@booking), :notice => '酒店预定成功'
+          else
+            @hotels = Hotel.all
+           render action: 'new'
+          end
         end
       end
     else

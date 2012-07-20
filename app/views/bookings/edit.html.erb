@@ -7,6 +7,8 @@
     <li>
       <h3><%= hotel.name %></h3>
       <div class="address">地址：<%= hotel.address %></div>
+      <div class="address">电话：<%= hotel.phone %></div>
+      <div class="address">网址：<%= hotel.website %></div>
       <%= image_tag hotel.image.url %>
       <div class="room">
         <% hotel.rooms.each do |room| %>

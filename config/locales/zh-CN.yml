@@ -231,3 +231,6 @@ zh-CN:
         approved: 是否通过
         points: 得分
         opinion: 评审意见
+      booking:
+        tour_museum: 参观博物馆
+        tour_tw: 参观兵马俑
