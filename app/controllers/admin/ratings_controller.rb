@@ -17,8 +17,8 @@ class Admin::RatingsController < Admin::BaseController
   end
   
   def batched_create
-    thesis_id_and_expert_names = params[:thesis_id_and_expert_names].split(/[\r\n]/).map{|tiaen| tiaen.strip unless tiaen.strip.blank?}.compact
-    Rating.batched_create params[:ratings][:review_id], thesis_id_and_expert_names
+    participant_id_and_expert_names = params[:participant_id_and_expert_names].split(/[\r\n]/).map{|piaen| piaen.strip unless piaen.strip.blank?}.compact
+    Rating.batched_create params[:ratings][:review_id], participant_id_and_expert_names
     redirect_to batched_new_admin_ratings_path, :notice => '批量指派成功'
   end
   

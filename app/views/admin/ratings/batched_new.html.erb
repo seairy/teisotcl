@@ -17,7 +17,7 @@
             <label>评审类型：</label><%= collection_select :ratings, :review_id, all_reviews, :id, :name, :class => 'text-field' %>
           </li>
           <li>
-            <%= text_area_tag :thesis_id_and_expert_names, nil, :class => 'text-area' %><span>论文序号、专家姓名用逗号分割</span>
+            <%= text_area_tag :participant_id_and_expert_names, nil, :class => 'text-area' %><span>论文序号、专家姓名用逗号分割</span>
           </li>
         </ul>
       </fieldset>
