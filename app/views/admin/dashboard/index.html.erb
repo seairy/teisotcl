@@ -15,10 +15,7 @@
         <legend>论文参会者统计</legend>
         <ul>
           <li>
-            <label>报名总人数：</label><%= @total_participants_count %>
-          </li>
-          <li>
-            <label>摘要通过审核人数：</label><%= @approved_theses_count %>
+            <label>论文参会人数：</label><%= @approved_theses_count %>
           </li>
           <li>
             <label>已提交全文人数：</label><%= @submited_theses_count %>
@@ -26,54 +23,19 @@
         </ul>
       </fieldset>
       <fieldset class="form-generic">
-        <legend>专家评审统计</legend>
+        <legend>酒店住宿统计</legend>
         <ul>
           <li>
-            <label>已评审：</label><%= @rated_count %>篇
+            <label>已选房人数：</label><%= @bookings_count %>
           </li>
-          <li>
-            <label>未评审：</label><%= @unrate_count %>篇
-          </li>
+          <% @hotels.each do |hotel| %>
+            <% hotel.rooms.each do |room| %>
+            <li>
+              <label><%= hotel.name %>（<%= room.name %>）：</label>共<%= room.quota %>间，已预定<%= room.bookings.count / room.bed_amount %>间
+            </li>
+            <% end %>
+          <% end %>
         </ul>
-      </fieldset>
-      <script type="text/javascript">
-        google.load("visualization", "1", {packages:["corechart"]});
-        google.setOnLoadCallback(drawSignupDateChart);
-        google.setOnLoadCallback(drawNationalityChart);
-        function drawSignupDateChart() {
-          var data = google.visualization.arrayToDataTable([
-            ['日期', '报名人数'],
-            <%= raw @signup_date_chart %>
-          ]);
-
-          var options = {
-            title: '报名日期及人数增长图表'
-          };
-
-          var chart = new google.visualization.LineChart(document.getElementById('signup-date-chart-div'));
-          chart.draw(data, options);
-        }
-        function drawNationalityChart() {
-          var data = google.visualization.arrayToDataTable([
-            ['国籍', '人数'],
-            <%= raw @nationality_chart %>
-          ]);
-
-          var options = {
-            title: '参会者国籍分布图表'
-          };
-
-          var chart = new google.visualization.PieChart(document.getElementById('nationality-chart-div'));
-          chart.draw(data, options);
-        }
-      </script>
-      <fieldset class="form-generic">
-        <legend>报名日期统计</legend>
-        <div id="signup-date-chart-div" style="width: 700px; height: 400px;"></div>
-      </fieldset>
-      <fieldset class="form-generic">
-        <legend>参会者国籍统计</legend>
-        <div id="nationality-chart-div" style="width: 700px; height: 400px;"></div>
       </fieldset>
     </div>
   </div>
