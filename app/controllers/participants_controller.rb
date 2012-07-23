@@ -3,7 +3,7 @@ class ParticipantsController < ApplicationController
   before_filter :authenticate_participant, :except => [:new, :create]
   before_filter :approve_participant, :except => [:new, :create, :dashboard]
   before_filter :authenticate_participant_id, :only => [:show_thesis, :edit, :edit_thesis, :update]
-  #before_filter :signup_expiration, :only => [:new, :create]
+  before_filter :signup_expiration, :only => [:new, :create]
 
   def dashboard
     @participant = Participant.find(session[:participant_id])
