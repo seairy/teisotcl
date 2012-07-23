@@ -10,11 +10,11 @@ class Expert < ActiveRecord::Base
     end
     
     def unrate
-      includes(:thesis).where('theses.summary_approved = 1').where(:rated_at => nil)
+      includes(:thesis).where(:rated_at => nil)
     end
     
     def rated
-      includes(:thesis).where('theses.summary_approved = 1').where('rated_at IS NOT NULL')
+      includes(:thesis).where('rated_at IS NOT NULL')
     end
   end
   class << self
