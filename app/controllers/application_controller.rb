@@ -9,7 +9,11 @@ class ApplicationController < ActionController::Base
   
   def approve_participant
     @participant = Participant.find(session[:participant_id])
-    redirect_to dashboard_participants_url if @participant.attend_as == Participant::AttendAsThesisAuthor and !@participant.thesis.summary_approved? 
+    if @participant.attend_as == Participant::AttendAsThesisAuthor and !@participant.thesis.summary_approved?
+      redirect_to dashboard_participants_url
+    elsif @participant.attend_as == Participant::AttendAsNonvoting and !@participant.approved?
+      redirect_to dashboard_participants_url
+    end
   end
   
   def authenticate_participant

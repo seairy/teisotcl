@@ -2,8 +2,10 @@
 <div id="right">
   <%= flash_tag %>
   <%= form_for @booking do |f| %>
+  <%= render "shared/error_messages", :target => @booking %>
   <ul class="list-hotels">
     <% @hotels.each do |hotel| %>
+    <% if session[:participant_attend_as] == Participant::AttendAsThesisAuthor or (session[:participant_attend_as] == Participant::AttendAsNonvoting and hotel.id == 1) %>
     <li>
       <h3><%= hotel.name %></h3>
       <div class="address">地址：<%= hotel.address %></div>
@@ -30,6 +32,7 @@
       </div>
       <div class="cb"></div>
     </li>
+    <% end %>
     <% end %>
   </ul>
   <fieldset class="form-generic form-booking">

@@ -12,7 +12,12 @@
       <p>欢迎您继续关注本届研讨会！</p>
     <% end %>
   <% elsif session[:participant_attend_as] == Participant::AttendAsNonvoting %>
-    <p>请等待报名审核结果！</p>
+    <% if @participant.approved? %>
+      <p>祝贺您！</p>
+      <p>您的旁听参会申请已经通过审核!</p>
+    <% else %>
+      <p>很遗憾，您未通过旁听代表审核！</p>
+    <% end %>
   <% end %>
 </div>
 <div class="cb"></div>

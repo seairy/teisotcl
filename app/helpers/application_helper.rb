@@ -67,7 +67,7 @@ module ApplicationHelper
         </ul>
         <h3>#{image_tag 'title_hotel.png'}</h3>
         <ul>
-          <li>#{link_to '酒店预定', ''}</li>
+          <li>#{link_to '酒店预定', new_booking_path}</li>
         </ul>
         <h3>#{image_tag 'title_system.png'}</h3>
         <ul>
