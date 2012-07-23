@@ -67,7 +67,7 @@
   <div id="notice">
     <ul>
       <% @articles.each do |article| %>
-      <li><%= link_to article.title, article %><%= image_tag 'notice_new.png' if article.featured? %><%= '<span class"cred fwb">（名额已满）</span>' if article.id == 9 %></li>
+      <li><%= link_to article.title, article %><%= image_tag 'notice_new.png' if article.featured? %><%= raw '<span class"cred fwb">（名额已满）</span>' if article.id == 9 %></li>
       <% end %>
     </ul>
   </div>
