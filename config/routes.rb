@@ -78,7 +78,7 @@ Teisotcl::Application.routes.draw do
     end
     resources :excels do
       collection do
-        get :export_thesis_author_participants, :export_nonvoting_participants, :export_approved_participants, :export_submited_participants, :export_experts, :export_reviews
+        get :export_thesis_author_participants, :export_nonvoting_participants, :export_approved_participants, :export_submited_participants, :export_experts, :export_reviews, :export_bookings
       end
     end
     match 'excels' => 'excels', :as => :excels

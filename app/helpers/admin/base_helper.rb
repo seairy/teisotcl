@@ -24,6 +24,10 @@ module Admin::BaseHelper
   def human_boolean_tag value
     raw(value ? '<span class="cgreen">是</span>' : '<span class="cred">否</span>')
   end
+  
+  def plain_boolean_tag value
+    value ? '是' : '否'
+  end
 
   def human_date_tag value
     value.blank? ? '无' : value.strftime('%Y-%m-%d')

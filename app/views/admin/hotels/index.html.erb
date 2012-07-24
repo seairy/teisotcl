@@ -2,7 +2,14 @@
   <h1>酒店列表</h1>
 </div>
 <div id="side">
-  <%= render "admin/shared/shortcut" %>
+  <div class="portlet">
+    <div class="title">相关功能</div>
+    <div class="content">
+      <ul>
+        <li><%= link_to '导出预订信息Excel', export_bookings_admin_excels_path(:format => :xls) %></li>
+      </ul>
+    </div>
+  </div>
 </div>
 <div id="main">
   <div class="portlet">

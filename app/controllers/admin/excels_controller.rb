@@ -30,4 +30,9 @@ class Admin::ExcelsController < Admin::BaseController
   def export_reviews
     
   end
+  
+  def export_bookings
+    @hotels = Hotel.all
+    respond_with @hotels
+  end
 end
