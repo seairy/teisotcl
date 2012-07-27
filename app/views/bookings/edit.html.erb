@@ -16,7 +16,7 @@
         <% hotel.rooms.each do |room| %>
           <p><%= room.name %>：房价<%= human_room_price_and_unit_tag room %>，会议期间世汉学会补贴50元/天</p>
           <% if room.id == @booking.room.id %>
-            <p class="action cred">已选择此房</p>
+            <p class="action cred">已选择此房 <%= f.radio_button :room_id, room.id %></p>
           <% else %>
             <% if room.full? %>
               <p class="action cred">该房已订满</p>
