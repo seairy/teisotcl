@@ -13,7 +13,7 @@ class Admin::ExcelsController < Admin::BaseController
   end
   
   def export_approved_participants
-    @participants = Participant.approved
+    @participants = Participant.thesis_author.approved
     respond_with @participants
   end
   
