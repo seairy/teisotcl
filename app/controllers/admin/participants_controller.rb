@@ -4,6 +4,10 @@ class Admin::ParticipantsController < Admin::BaseController
   def index
     @participants = Participant.order('created_at DESC').paginate :page => params[:page]
   end
+  
+  def approved
+    @participants = Participant.approved.order('created_at DESC').paginate :page => params[:page]
+  end
 
   def show
     @reviews = Review.all
@@ -68,5 +72,63 @@ class Admin::ParticipantsController < Admin::BaseController
     session[:participant_last_signined_at] = @participant.last_signined_at
     session[:participant_attend_as] = @participant.attend_as
     redirect_to dashboard_participants_url
+  end
+  
+  def register
+    @participant = Participant.find(params[:id])
+    @participant.update_attribute(:registered_at, Time.now) if @participant.registered_at.blank?
+    redirect_to admin_participant_path(@participant, :anchor => 'registration')
+  end
+  
+  def pay_fee
+    @participant = Participant.find(params[:id])
+    @participant.update_attribute(:fee_paid, params[:payment])
+    redirect_to admin_participant_path(@participant, :anchor => 'registration')
+  end
+  
+  def pay_isclt_fee
+    @participant = Participant.find(params[:id])
+    @participant.update_attribute(:isclt_fee_paid, params[:payment])
+    redirect_to admin_participant_path(@participant, :anchor => 'registration')
+  end
+  
+  def attend_banquet
+    @participant = Participant.find(params[:id])
+    if params[:attend] == 'no'
+      @participant.update_attribute(:attend_banquet, false)
+    else
+      @participant.update_attribute(:attend_banquet, true)
+    end
+    redirect_to admin_participant_path(@participant, :anchor => 'registration')
+  end
+  
+  def attend_congress
+    @participant = Participant.find(params[:id])
+    if params[:attend] == 'no'
+      @participant.update_attribute(:attend_congress, false)
+    else
+      @participant.update_attribute(:attend_congress, true)
+    end
+    redirect_to admin_participant_path(@participant, :anchor => 'registration')
+  end
+  
+  def tour_museum
+    @participant = Participant.find(params[:id])
+    if params[:attend] == 'no'
+      @participant.update_attribute(:tour_museum, false)
+    else
+      @participant.update_attribute(:tour_museum, true)
+    end
+    redirect_to admin_participant_path(@participant, :anchor => 'registration')
+  end
+  
+  def tour_tw
+    @participant = Participant.find(params[:id])
+    if params[:attend] == 'no'
+      @participant.update_attribute(:tour_tw, false)
+    else
+      @participant.update_attribute(:tour_tw, true)
+    end
+    redirect_to admin_participant_path(@participant, :anchor => 'registration')
   end
 end

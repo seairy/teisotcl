@@ -67,8 +67,77 @@
           <li>
             <label>备注：</label><%= f.text_area :remark, :class => 'text-area' %>
           </li>
+          <li>
+            <label>世汉学会会员：</label><%= f.check_box :isclt_member %>
+          </li>
+          <li>
+            <label>会费截止日期：</label><%= f.date_select :isclt_expired_at %>
+          </li>
+          <li>
+            <label>是否参会：</label><%= f.check_box :approved %>
+          </li>
         </ul>
       </fieldset>
+      <% if @participant.approved? and !@participant.registered_at.blank? %>
+      <fieldset class="form-generic">
+        <legend>签到信息</legend>
+        <ul>
+          <li>
+            <label>签到时间：</label><%= f.datetime_select :registered_at %>
+          </li>
+          <li>
+            <label>缴纳会议费：</label>
+            <% if @participant.fee_paid.nil? %>
+              <span class="cred">未缴纳</span>
+            <% else %>
+              <%= f.text_field :fee_paid, :class => 'text-field tiny' %> 元
+            <% end %>
+          </li>
+          <% if @participant.isclt_member? %>
+            <li>
+              <label>缴纳会员费：</label>
+              <% if @participant.isclt_fee_paid.nil? %>
+                <span class="cred">未缴纳</span>
+              <% else %>
+                <%= f.text_field :isclt_fee_paid, :class => 'text-field tiny' %> 元
+              <% end %>
+            </li>
+          <% end %>
+          <li>
+            <label>晚宴：</label>
+            <% if @participant.attend_banquet.nil? %>
+              <span class="cred">未选择</span>
+            <% else %>
+              <%= f.radio_button :attend_banquet, true %>参加 <%= f.radio_button :attend_banquet, false %>不参加
+            <% end %>
+          </li>
+          <li>
+            <label>会员代表大会：</label>
+            <% if @participant.attend_congress.nil? %>
+              <span class="cred">未选择</span>
+            <% else %>
+              <%= f.radio_button :attend_congress, true %>参加 <%= f.radio_button :attend_congress, false %>不参加
+            <% end %>
+          </li>
+          <li>
+            <label>参观博物馆：</label>
+            <% if @participant.tour_museum.nil? %>
+              <span class="cred">未选择</span>
+            <% else %>
+              <%= f.radio_button :tour_museum, true %>参加 <%= f.radio_button :tour_museum, false %>不参加
+            <% end %>
+          </li>
+          <li>
+            <label>参观兵马俑：</label>
+            <% if @participant.tour_tw.nil? %>
+              <span class="cred">未选择</span>
+            <% else %>
+              <%= f.radio_button :tour_tw, true %>参加 <%= f.radio_button :tour_tw, false %>不参加
+            <% end %>
+          </li>
+        </ul>
+      </fieldset>
+      <% end %>
       <%= f.fields_for :thesis do |tf| %>
       <fieldset class="form-generic">
         <legend>论文信息</legend>

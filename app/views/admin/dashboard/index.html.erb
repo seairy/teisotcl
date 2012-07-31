@@ -1,11 +1,18 @@
-<% content_for :head do %>
-  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<% end %>
 <div id="notice">
   <h1>控制面板</h1>
 </div>
 <div id="side">
-  <%= render "admin/shared/shortcut" %>
+  <div class="portlet">
+    <div class="title">搜索参会者</div>
+    <div class="content">
+      <div class="search-generic">
+        <%= form_tag search_admin_participants_path, :id => 'search_participants', :method => :get do %>
+          <%= text_field_tag :keyword, nil, :class => 'text-field' %>
+          <%= link_to '搜索', '#', :onclick => "submitForm('search_participants')", :class => 'button' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 <div id="main">
   <div class="portlet">
@@ -35,6 +42,26 @@
             </li>
             <% end %>
           <% end %>
+        </ul>
+      </fieldset>
+      <fieldset class="form-generic">
+        <legend>签到统计</legend>
+        <ul>
+          <li>
+            <label>全部代表：</label>共<%= @approved_participants_count %>人，已签到<%= @registered_participants_count %>人
+          </li>
+          <li>
+            <label>论文代表：</label>共<%= @approved_thesis_author_participants_count %>人，已签到<%= @registered_thesis_author_participants_count %>人
+          </li>
+          <li>
+            <label>旁听代表：</label>共<%= @approved_nonvoting_participants_count %>人，已签到<%= @registered_nonvoting_participants_count %>人
+          </li>
+          <li>
+            <label>会员代表：</label>共<%= @approved_isclt_member_participants_count %>人，已签到<%= @registered_isclt_member_participants_count %>人
+          </li>
+          <li>
+            <label>活动统计：</label>参观博物馆<%= @tour_museum_participants_count %>人，参观兵马俑<%= @tour_tw_participants_count %>人，参加晚宴<%= @attend_banquet_participants_count %>人，参加会员代表大会<%= @attend_congress_participants_count %>人
+          </li>
         </ul>
       </fieldset>
     </div>

@@ -36,10 +36,10 @@ Teisotcl::Application.routes.draw do
     root :to => 'dashboard#index'
     resources :participants do
       member do
-        get :reset_password, :simulate_signin
+        get :reset_password, :simulate_signin, :register, :pay_fee, :pay_isclt_fee, :attend_banquet, :attend_congress, :tour_museum, :tour_tw
       end
       collection do
-        get :search
+        get :search, :approved
       end
       resource :thesis do
         resources :ratings

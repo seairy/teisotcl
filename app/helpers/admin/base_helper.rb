@@ -56,6 +56,10 @@ module Admin::BaseHelper
     end
   end
   
+  def human_attend_tag value
+    raw(value ? '<span class="cgreen">参加</span>' : '<span class="cred">不参加</span>')
+  end
+  
   def user_role_options
     [['管理员', User::RoleAdmin], ['领导', User::RoleLeader], ['编辑', User::RoleEditor]]
   end

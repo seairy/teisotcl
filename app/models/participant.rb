@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Participant < ActiveRecord::Base
-  AttendAsThesisAuthor, AttendAsNonvoting = 1, 2
+  AttendAsThesisAuthor, AttendAsNonvoting, AttendAsTrustee = 1, 2, 3
   has_secure_password
   belongs_to :nationality, :class_name => 'Country'
   belongs_to :teaches_in, :class_name => 'Country'
@@ -18,9 +18,15 @@ class Participant < ActiveRecord::Base
   validates :company, :length => { :maximum => 100 }, :presence => true
   scope :thesis_author, where(['attend_as = ?', AttendAsThesisAuthor])
   scope :nonvoting, where(['attend_as = ?', AttendAsNonvoting])
+  scope :isclt_member, where('isclt_member = 1')
+  scope :tour_museum, where('tour_museum = 1')
+  scope :tour_tw, where('tour_tw = 1')
+  scope :attend_banquet, where('attend_banquet = 1')
+  scope :attend_congress, where('attend_congress = 1')
   scope :today, where(['created_at >= ? AND created_at <= ?', Time.now.beginning_of_day, Time.now.end_of_day])
-  scope :approved, includes(:thesis).where('theses.summary_approved = 1')
+  scope :approved, where('approved = 1')
   scope :submited, includes(:thesis).where('theses.summary_approved = 1 AND theses.document_file_name IS NOT NULL')
+  scope :registered, where('registered_at IS NOT NULL')
   scope :search, lambda{ |keywords| where("chinese_name LIKE '%#{keywords}%' OR foreign_name LIKE '%#{keywords}%' OR company LIKE '%#{keywords}%'") }
   
   class << self

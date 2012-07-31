@@ -14,7 +14,6 @@
           <li><%= link_to image_tag('navi_intro.png'), intro_path %></li>
           <li><%= link_to image_tag('navi_notice.png'), articles_path %></li>
           <li><%= link_to image_tag('navi_history.png'), 'http://www.shihan.org.cn/seminars', :target => '_blank' %></li>
-          <li><%= link_to image_tag('navi_lesson.png'), root_path %></li>
           <li>
             <% if participant_signined? %>
               <%= link_to image_tag('navi_participant_mgmt.png'), dashboard_participants_path %>
@@ -29,6 +28,7 @@
               <%= link_to image_tag('navi_expert_signin.png'), expert_signin_path %>
             <% end %>
           </li>
+          <li><%= link_to image_tag('navi_about.png'), 'http://www.shihan.org.cn/about/intro', :target => '_blank' %></li>
         </ul>
         <div class="cb"></div>
       </div>

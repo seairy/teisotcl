@@ -1,0 +1,58 @@
+<div id="notice">
+  <h1>参会者列表</h1>
+</div>
+<div id="side">
+  <div class="portlet">
+    <div class="title">搜索参会者</div>
+    <div class="content">
+      <div class="search-generic">
+        <%= form_tag search_admin_participants_path, :id => 'search_participants', :method => :get do %>
+          <%= text_field_tag :keyword, nil, :class => 'text-field' %>
+          <%= link_to '搜索', '#', :onclick => "submitForm('search_participants')", :class => 'button' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="portlet">
+    <div class="title">相关功能</div>
+    <div class="content">
+      <ul>
+        <li><%= link_to '导出论文参会Excel',export_thesis_author_participants_admin_excels_path(:format => :xls) %></li>
+        <li><%= link_to '导出旁听参会Excel',export_nonvoting_participants_admin_excels_path(:format => :xls) %></li>
+        <li><%= link_to '导出审核通过Excel',export_approved_participants_admin_excels_path(:format => :xls) %></li>
+        <li><%= link_to '导出提交论文Excel',export_submited_participants_admin_excels_path(:format => :xls) %></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= flash_tag %>
+      <table class="list-generic">
+        <thead>
+          <tr>
+            <td>序号</td>
+            <td>中文名</td>
+            <td>工作单位</td>
+            <td>参会类型</td>
+            <td>操作</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @participants.each do |participant| %>
+            <tr>
+              <td><%= participant.id %></td>
+              <td><%= link_to participant.chinese_name, [:admin, participant] %></td>
+              <td><%= participant.company.truncate(20) %></td>
+              <td><%= human_participant_type_tag participant.attend_as %></td>
+              <td><%= edit_tag participant %> <%= destroy_tag participant %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @participants %>
+    </div>
+  </div>
+</div>

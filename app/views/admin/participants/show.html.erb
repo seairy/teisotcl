@@ -79,6 +79,17 @@
             <label>备注：</label><%= @participant.remark %>
           </li>
           <li>
+            <label>世汉学会会员：</label><%= human_boolean_tag @participant.isclt_member? %>
+          </li>
+          <% if @participant.isclt_member? %>
+          <li>
+            <label>会费截止日期：</label><%= human_date_tag @participant.isclt_expired_at %>
+          </li>
+          <% end %>
+          <li>
+            <label>是否参会：</label><%= human_boolean_tag @participant.approved? %>
+          </li>
+          <li>
             <label>提交时间：</label><%= human_datetime_tag @participant.created_at %>
           </li>
           <li>
@@ -86,6 +97,111 @@
           </li>
         </ul>
       </fieldset>
+      <% if @participant.approved? %>
+      <fieldset class="form-generic">
+        <legend>预定信息</legend>
+        <ul>
+        <% if @participant.bookings.blank? %>
+          <li>
+            <label>住宿信息：</label><span class="cred">未预定住宿</span>
+          </li>
+        <% else %>
+          <li>
+            <label>住宿酒店：</label><%= @participant.bookings.first.room.hotel.name %>
+          </li>
+          <li>
+            <label>房间类型：</label><%= @participant.bookings.first.room.name %>
+          </li>
+          <li>
+            <label>房间号码：</label><%= @participant.bookings.first.room_number %>
+          </li>
+          <li>
+            <label>参观博物馆：</label><%= human_boolean_tag @participant.bookings.first.tour_museum? %>
+          </li>
+          <li>
+            <label>参观兵马俑：</label><%= human_boolean_tag @participant.bookings.first.tour_tw? %>
+          </li>
+        <% end %>
+        </ul>
+      </fieldset>
+      <fieldset class="form-generic" id="registration">
+        <legend>签到信息</legend>
+        <ul>
+          <li>
+            <label>签到时间：</label>
+            <% if @participant.registered_at.blank? %>
+              <%= link_to '现在签到', register_admin_participant_path(@participant), :class => 'button' %>
+            <% else %>
+              <%= human_datetime_tag @participant.registered_at %>
+            <% end %>
+          </li>
+          <% if @participant.fee_paid.nil? %>
+          <%= form_tag pay_fee_admin_participant_path(@participant), :id => 'pay_fee', :method => :get do %>
+          <li>
+            <label>缴纳会议费：</label>
+            <%= text_field_tag 'payment', nil, :class => 'text-field tiny' %> 元
+            <%= link_to '现在缴纳', '#', :onclick => "submitForm('pay_fee')", :class => 'button' %>
+          </li>
+          <% end %>
+          <% else %>
+          <li>
+            <label>缴纳会议费：</label><%= @participant.fee_paid %>元
+          </li>
+          <% end %>
+          <% if @participant.isclt_member? %>
+            <% if @participant.isclt_fee_paid.nil? %>
+            <%= form_tag pay_isclt_fee_admin_participant_path(@participant), :id => 'pay_isclt_fee', :method => :get do %>
+            <li>
+              <label>缴纳会员费：</label>
+              <%= text_field_tag 'payment', nil, :class => 'text-field tiny' %> 元
+              <%= link_to '现在缴纳', '#', :onclick => "submitForm('pay_isclt_fee')", :class => 'button' %>
+            </li>
+            <% end %>
+            <% else %>
+            <li>
+              <label>缴纳会员费：</label><%= @participant.isclt_fee_paid %>元
+            </li>
+            <% end %>
+          <% end %>
+          <li>
+            <label>晚宴：</label>
+            <% if @participant.attend_banquet.nil? %>
+              <%= link_to '参加', attend_banquet_admin_participant_path(@participant), :class => 'button' %>
+              <%= link_to '不参加', attend_banquet_admin_participant_path(@participant, :attend => :no), :class => 'button' %>
+            <% else %>
+              <%= human_attend_tag @participant.attend_banquet? %>
+            <% end %>
+          </li>
+          <li>
+            <label>会员代表大会：</label>
+            <% if @participant.attend_congress.nil? %>
+              <%= link_to '参加', attend_congress_admin_participant_path(@participant), :class => 'button' %>
+              <%= link_to '不参加', attend_congress_admin_participant_path(@participant, :attend => :no), :class => 'button' %>
+            <% else %>
+              <%= human_attend_tag @participant.attend_congress? %>
+            <% end %>
+          </li>
+          <li>
+            <label>参观博物馆：</label>
+            <% if @participant.tour_museum.nil? %>
+              <%= link_to '参加', tour_museum_admin_participant_path(@participant), :class => 'button' %>
+              <%= link_to '不参加', tour_museum_admin_participant_path(@participant, :attend => :no), :class => 'button' %>
+            <% else %>
+              <%= human_attend_tag @participant.tour_museum? %>
+            <% end %>
+          </li>
+          <li>
+            <label>参观兵马俑：</label>
+            <% if @participant.tour_tw.nil? %>
+              <%= link_to '参加', tour_tw_admin_participant_path(@participant), :class => 'button' %>
+              <%= link_to '不参加', tour_tw_admin_participant_path(@participant, :attend => :no), :class => 'button' %>
+            <% else %>
+              <%= human_attend_tag @participant.tour_tw? %>
+            <% end %>
+          </li>
+        </ul>
+      </fieldset>
+      <% end %>
       <% if @participant.attend_as == Participant::AttendAsThesisAuthor and !@participant.thesis.blank? %>
       <fieldset class="form-generic">
         <legend>论文信息</legend>
