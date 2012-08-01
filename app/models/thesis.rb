@@ -45,4 +45,18 @@ class Thesis < ActiveRecord::Base
       self.document.path
     end
   end
+  
+  def average_score_of_thesis_review
+    average_score = 0
+    self.ratings.for_review(Review.find(2)).each do |rating|
+      unless rating.points.blank?
+        if average_score == 0
+          average_score = rating.points
+        else
+          average_score = (average_score + rating.points) / 2
+        end
+      end
+    end
+    average_score
+  end
 end
