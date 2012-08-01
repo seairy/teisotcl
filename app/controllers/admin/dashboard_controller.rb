@@ -2,8 +2,8 @@
 class Admin::DashboardController < Admin::BaseController
   
   def index
-    @approved_theses_count = Thesis.approved.count
-    @submited_theses_count = Thesis.submited.approved.count
+    @approved_theses_count = Participant.thesis_author.approved.count
+    @submited_theses_count = Thesis.approved.submited.count
     @bookings_count = Booking.all.count
     @hotels = Hotel.all
     @approved_participants_count = Participant.approved.count

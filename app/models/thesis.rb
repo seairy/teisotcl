@@ -12,10 +12,6 @@ class Thesis < ActiveRecord::Base
   scope :search, lambda{ |keywords| where("subject LIKE '%#{keywords}%' OR first_author LIKE '%#{keywords}%' OR second_author LIKE '%#{keywords}%' OR keywords LIKE '%#{keywords}%' OR summary LIKE '%#{keywords}%'") }
   scope :submited, where('document_file_name IS NOT NULL')
   scope :approved, where('summary_approved = 1')
-  validates :subject, :length => { :maximum => 250 }, :presence => true
-  validates :first_author, :length => { :maximum => 50 }, :presence => true
-  validates :keywords, :length => { :maximum => 100 }, :presence => true
-  validates :summary, :length => { :minimum => 500 }, :presence => true
   
   class << self
     def archive

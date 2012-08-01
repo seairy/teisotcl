@@ -73,6 +73,15 @@
           <li>
             <label>备注：</label><%= f.text_area :remark, :class => 'text-area' %>
           </li>
+          <li>
+            <label>世汉学会会员：</label><%= f.check_box :isclt_member %>
+          </li>
+          <li>
+            <label>会费截止日期：</label><%= f.date_select :isclt_expired_at, :prompt => true %>
+          </li>
+          <li>
+            <label>是否参会：</label><%= f.check_box :approved %>
+          </li>
         </ul>
       </fieldset>
       <%= f.fields_for :thesis do |tf| %>
