@@ -8,7 +8,7 @@ class Admin::ExcelsController < Admin::BaseController
   end
   
   def export_nonvoting_participants
-    @participants = Participant.nonvoting
+    @participants = Participant.nonvoting.approved
     respond_with @participants
   end
   

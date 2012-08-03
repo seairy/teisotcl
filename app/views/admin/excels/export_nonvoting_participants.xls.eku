@@ -1,4 +1,4 @@
-__filename = "all_participants_#{Time.now.strftime '%Y%m%d%H%M'}.xls"
+__filename = "approved_nonvoting_participants_#{Time.now.strftime '%Y%m%d%H%M'}.xls"
 
 title_format = Spreadsheet::Format.new(:color => :blue, :weight => :bold)
 
