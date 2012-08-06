@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
   before_filter :authenticate_participant
   before_filter :approve_participant
   before_filter :booked_check, :only => [:new]
+  before_filter :expired
   
   def new
     @hotels = Hotel.all
@@ -60,5 +61,9 @@ class BookingsController < ApplicationController
   def booked_check
     @participant = Participant.find(session[:participant_id])
     redirect_to edit_booking_path(@participant.bookings.first) unless @participant.bookings.blank?
+  end
+  
+  def expired
+    render 'expired'
   end
 end
