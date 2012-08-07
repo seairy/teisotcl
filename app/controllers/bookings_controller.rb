@@ -32,7 +32,7 @@ class BookingsController < ApplicationController
             redirect_to edit_booking_path(@booking), :notice => '酒店预定成功'
           else
             @hotels = Hotel.all
-           render action: 'new'
+            render action: 'new'
           end
         end
       end
