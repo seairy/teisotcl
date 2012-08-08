@@ -6,9 +6,11 @@ title_format = Spreadsheet::Format.new(:color => :blue, :weight => :bold)
 	sheet = xls.create_worksheet :name => hotel.name
 	sheet.row(0).concat %w{代表姓名 代表性别 代表类型 是否会员 会员截止日期 房间类型 入住日期 参观博物馆 参观兵马俑 备注信息}
 	sheet.row(0).default_format = title_format
+	index = 0
 	hotel.rooms.each do |room|
-	  room.bookings.each_with_index do |b, i|
-    	sheet.update_row i + 1, b.participant.chinese_name, human_gender_tag(b.participant.gender), human_participant_type_tag(b.participant.attend_as), plain_boolean_tag(b.participant.isclt_member?), human_date_tag(b.participant.isclt_expired_at), b.room.name, "#{b.from.strftime('%m月%d日')} 至 #{b.to.strftime('%m月%d日')}", plain_boolean_tag(b.tour_museum), plain_boolean_tag(b.tour_tw), b.remark
+	  room.bookings.each do |b|
+    	sheet.update_row index + 1, b.participant.chinese_name, human_gender_tag(b.participant.gender), human_participant_type_tag(b.participant.attend_as), plain_boolean_tag(b.participant.isclt_member?), human_date_tag(b.participant.isclt_expired_at), b.room.name, "#{b.from.strftime('%m月%d日')} 至 #{b.to.strftime('%m月%d日')}", plain_boolean_tag(b.tour_museum), plain_boolean_tag(b.tour_tw), b.remark
+	  	index += 1
 	  end
 	end
 end
