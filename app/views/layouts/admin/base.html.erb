@@ -29,6 +29,12 @@
       <div class="container">
         <ul>
           <li><%= link_to '控制面板', admin_root_path %></li>
+          <li><a href="#">签到管理<%= image_tag 'admin/navi_arrow.gif' %></a>
+            <ul>
+              <li><%= link_to '已签到代表', registered_admin_participants_path %></li>
+              <li><%= link_to '未签到代表', unregister_admin_participants_path %></li>
+            </ul>
+          </li>
           <li><a href="#">参会者管理<%= image_tag 'admin/navi_arrow.gif' %></a>
             <ul>
               <li><%= link_to '参会者列表', approved_admin_participants_path %></li>
@@ -36,7 +42,7 @@
               <li><%= link_to '已提交代表', submited_admin_theses_path %></li>
             </ul>
           </li>
-          <li><a href="#">专家管理<%= image_tag 'admin/navi_arrow.gif' %></a>
+          <!--li><a href="#">专家管理<%= image_tag 'admin/navi_arrow.gif' %></a>
             <ul>
               <li><%= link_to '专家列表', admin_experts_path %></li>
               <li><%= link_to '添加专家', new_admin_expert_path %></li>
@@ -49,7 +55,7 @@
               <li><%= link_to '添加评审', new_admin_review_path %></li>
               <li><%= link_to '批量指派', batched_new_admin_ratings_path %></li>
             </ul>
-          </li>
+          </li-->
           <li><a href="#">内容管理<%= image_tag 'admin/navi_arrow.gif' %></a>
             <ul>
               <li><%= link_to '文章列表', admin_articles_path %></li>

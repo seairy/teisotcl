@@ -39,7 +39,7 @@ Teisotcl::Application.routes.draw do
         get :reset_password, :simulate_signin, :register, :pay_fee, :pay_isclt_fee, :attend_banquet, :attend_congress, :tour_museum, :tour_tw
       end
       collection do
-        get :search, :approved
+        get :search, :approved, :registered, :unregister
       end
       resource :thesis do
         resources :ratings
@@ -78,7 +78,7 @@ Teisotcl::Application.routes.draw do
     end
     resources :excels do
       collection do
-        get :export_thesis_author_participants, :export_nonvoting_participants, :export_approved_participants, :export_submited_participants, :export_experts, :export_reviews, :export_bookings
+        get :export_thesis_author_participants, :export_nonvoting_participants, :export_approved_participants, :export_submited_participants, :export_participants_with_registration, :export_experts, :export_reviews, :export_bookings
       end
     end
     match 'excels' => 'excels', :as => :excels

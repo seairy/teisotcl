@@ -111,14 +111,16 @@
               <%= f.radio_button :attend_banquet, true %>参加 <%= f.radio_button :attend_banquet, false %>不参加
             <% end %>
           </li>
-          <li>
-            <label>会员代表大会：</label>
-            <% if @participant.attend_congress.nil? %>
-              <span class="cred">未选择</span>
-            <% else %>
-              <%= f.radio_button :attend_congress, true %>参加 <%= f.radio_button :attend_congress, false %>不参加
-            <% end %>
-          </li>
+          <% if @participant.isclt_member? %>
+            <li>
+              <label>会员代表大会：</label>
+              <% if @participant.attend_congress.nil? %>
+                <span class="cred">未选择</span>
+              <% else %>
+                <%= f.radio_button :attend_congress, true %>参加 <%= f.radio_button :attend_congress, false %>不参加
+              <% end %>
+            </li>
+          <% end %>
           <li>
             <label>参观博物馆：</label>
             <% if @participant.tour_museum.nil? %>

@@ -27,6 +27,7 @@ class Participant < ActiveRecord::Base
   scope :approved, where('approved = 1')
   scope :submited, includes(:thesis).where('theses.summary_approved = 1 AND theses.document_file_name IS NOT NULL')
   scope :registered, where('registered_at IS NOT NULL')
+  scope :unregister, where('registered_at IS NULL')
   scope :search, lambda{ |keywords| where("chinese_name LIKE '%#{keywords}%' OR foreign_name LIKE '%#{keywords}%' OR company LIKE '%#{keywords}%'") }
   
   class << self

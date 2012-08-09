@@ -110,6 +110,10 @@ module Admin::BaseHelper
     participant.teaches_in.blank? ? '无' : participant.teaches_in.name
   end
   
+  def human_register_tag registered_at
+    registered_at.blank? ? '未签到' : human_datetime_tag(registered_at)
+  end
+  
   def thesis_review_tag thesis, review
     output = '<ul>'
     if thesis.ratings.for_review(review).blank?

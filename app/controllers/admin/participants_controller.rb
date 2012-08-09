@@ -8,6 +8,14 @@ class Admin::ParticipantsController < Admin::BaseController
   def approved
     @participants = Participant.approved.order('created_at DESC').paginate :page => params[:page]
   end
+  
+  def registered
+    @participants = Participant.approved.registered.order('registered_at DESC').paginate :page => params[:page]
+  end
+  
+  def unregister
+    @participants = Participant.approved.unregister.order('created_at DESC').paginate :page => params[:page]
+  end
 
   def show
     @reviews = Review.all

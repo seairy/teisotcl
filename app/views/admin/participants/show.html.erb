@@ -172,6 +172,7 @@
               <%= human_attend_tag @participant.attend_banquet? %>
             <% end %>
           </li>
+          <% if @participant.isclt_member? %>
           <li>
             <label>会员代表大会：</label>
             <% if @participant.attend_congress.nil? %>
@@ -181,6 +182,7 @@
               <%= human_attend_tag @participant.attend_congress? %>
             <% end %>
           </li>
+          <% end %>
           <li>
             <label>参观博物馆：</label>
             <% if @participant.tour_museum.nil? %>

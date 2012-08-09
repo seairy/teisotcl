@@ -19,32 +19,6 @@
     <div class="title">数据统计</div>
     <div class="content">
       <fieldset class="form-generic">
-        <legend>论文参会者统计</legend>
-        <ul>
-          <li>
-            <label>论文参会人数：</label><%= @approved_theses_count %>
-          </li>
-          <li>
-            <label>已提交全文人数：</label><%= @submited_theses_count %>
-          </li>
-        </ul>
-      </fieldset>
-      <fieldset class="form-generic">
-        <legend>酒店住宿统计</legend>
-        <ul>
-          <li>
-            <label>已选房人数：</label><%= @bookings_count %>
-          </li>
-          <% @hotels.each do |hotel| %>
-            <% hotel.rooms.each do |room| %>
-            <li>
-              <label><%= hotel.name %>（<%= room.name %>）：</label>共<%= room.quota %>间，已预定<%= room.bookings.count / room.bed_amount %>间
-            </li>
-            <% end %>
-          <% end %>
-        </ul>
-      </fieldset>
-      <fieldset class="form-generic">
         <legend>签到统计</legend>
         <ul>
           <li>
@@ -62,6 +36,18 @@
           <li>
             <label>活动统计：</label>参观博物馆<%= @tour_museum_participants_count %>人，参观兵马俑<%= @tour_tw_participants_count %>人，参加晚宴<%= @attend_banquet_participants_count %>人，参加会员代表大会<%= @attend_congress_participants_count %>人
           </li>
+        </ul>
+      </fieldset>
+      <fieldset class="form-generic">
+        <legend>酒店入住统计</legend>
+        <ul>
+          <% @hotels.each do |hotel| %>
+            <% hotel.rooms.each do |room| %>
+              <li>
+                <label><%= hotel.name %>（<%= room.name %>）：</label>共<%= room.bookings.count %>人，已签到<%= room.bookings.registered.count %>人，未签到<%= room.bookings.unregister.count %>人
+              </li>
+            <% end %>
+          <% end %>
         </ul>
       </fieldset>
     </div>
