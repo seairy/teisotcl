@@ -114,6 +114,10 @@ module Admin::BaseHelper
     registered_at.blank? ? '未签到' : human_datetime_tag(registered_at)
   end
   
+  def human_hotel_room_tag booking
+    booking.blank? ? '未预定' : "#{booking.room.hotel.name}（#{booking.room.name}）"
+  end
+  
   def thesis_review_tag thesis, review
     output = '<ul>'
     if thesis.ratings.for_review(review).blank?
