@@ -64,6 +64,6 @@ class BookingsController < ApplicationController
   end
   
   def expired
-    render 'expired'
+    render 'expired' unless session[:administrator]
   end
 end

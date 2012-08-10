@@ -79,6 +79,7 @@ class Admin::ParticipantsController < Admin::BaseController
     session[:participant_chinese_name] = @participant.chinese_name
     session[:participant_last_signined_at] = @participant.last_signined_at
     session[:participant_attend_as] = @participant.attend_as
+    session[:administrator] = true
     redirect_to dashboard_participants_url
   end
   
