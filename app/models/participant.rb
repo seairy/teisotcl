@@ -12,10 +12,7 @@ class Participant < ActiveRecord::Base
   validates :chinese_name, :length => { :maximum => 100 }, :presence => true
   validates :gender, :presence => true
   validates :nationality_id, :presence => true
-  validates :phone, :length => { :maximum => 100 }, :presence => true
-  validates :mobile, :length => { :maximum => 100 }, :presence => true
-  validates :email, :format => { :with => /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/, :message => "只能使用有效地址" }, :length => { :maximum => 200 }, :presence => true
-  validates :company, :length => { :maximum => 100 }, :presence => true
+  validates :email, :format => { :with => /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/, :message => "只能使用有效地址" }, :length => { :maximum => 200 }
   scope :thesis_author, where(['attend_as = ?', AttendAsThesisAuthor])
   scope :nonvoting, where(['attend_as = ?', AttendAsNonvoting])
   scope :isclt_member, where('isclt_member = 1')
@@ -28,7 +25,7 @@ class Participant < ActiveRecord::Base
   scope :submited, includes(:thesis).where('theses.summary_approved = 1 AND theses.document_file_name IS NOT NULL')
   scope :registered, where('registered_at IS NOT NULL')
   scope :unregister, where('registered_at IS NULL')
-  scope :search, lambda{ |keywords| where("chinese_name LIKE '%#{keywords}%' OR foreign_name LIKE '%#{keywords}%' OR company LIKE '%#{keywords}%'") }
+  scope :search, lambda{ |keywords| where("account LIKE '%#{keywords}%' OR chinese_name LIKE '%#{keywords}%' OR foreign_name LIKE '%#{keywords}%' OR company LIKE '%#{keywords}%'") }
   
   class << self
     def signup_date_chart
