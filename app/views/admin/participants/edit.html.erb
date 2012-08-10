@@ -85,6 +85,7 @@
           <li>
             <label>签到时间：</label><%= f.datetime_select :registered_at %>
           </li>
+          <% if @participant.attend_as != Participant::AttendAsTrustee %>
           <li>
             <label>缴纳会议费：</label>
             <% if @participant.fee_paid.nil? %>
@@ -93,7 +94,8 @@
               <%= f.text_field :fee_paid, :class => 'text-field tiny' %> 元
             <% end %>
           </li>
-          <% if @participant.isclt_member? %>
+          <% end %>
+          <% if @participant.isclt_member? and @participant.attend_as != Participant::AttendAsTrustee %>
             <li>
               <label>缴纳会员费：</label>
               <% if @participant.isclt_fee_paid.nil? %>
