@@ -135,7 +135,7 @@
               <%= human_datetime_tag @participant.registered_at %>
             <% end %>
           </li>
-          <% if @participant.attend_as != Participant::AttendAsTrustee %>
+          <% if @participant.attend_as != Participant::AttendAsTrustee and @participant.attend_as != Participant::AttendAsWorker %>
             <% if @participant.fee_paid.nil? %>
             <%= form_tag pay_fee_admin_participant_path(@participant), :id => 'pay_fee', :method => :get do %>
             <li>
@@ -150,7 +150,7 @@
             </li>
             <% end %>
           <% end %>
-          <% if @participant.isclt_member? and @participant.attend_as != Participant::AttendAsTrustee %>
+          <% if @participant.isclt_member? and @participant.attend_as != Participant::AttendAsTrustee and @participant.attend_as != Participant::AttendAsWorker %>
             <% if @participant.isclt_fee_paid.nil? %>
             <%= form_tag pay_isclt_fee_admin_participant_path(@participant), :id => 'pay_isclt_fee', :method => :get do %>
             <li>
@@ -234,18 +234,22 @@
         </ul>
       </fieldset>
       <% @reviews.each do |review| %>
-      <fieldset class="form-generic">
-        <legend><%= review.name %></legend>
-        <%= thesis_review_tag @participant.thesis, review %>
-      </fieldset>
+        <fieldset class="form-generic">
+          <legend><%= review.name %></legend>
+          <%= thesis_review_tag @participant.thesis, review %>
+        </fieldset>
       <% end %>
       <% end %>
       <div class="action-generic">
-        <%= link_to '编辑', edit_admin_participant_path(@participant), :class => 'button' %>
-        <%= link_to '重置密码', reset_password_admin_participant_path(@participant), :confirm => '确定要重置密码吗？', :class => 'button' %>
-        <%= link_to '模拟登录', simulate_signin_admin_participant_path(@participant), :target => '_blank', :class => 'button' %>
-        <%= link_to '删除', [:admin, @participant], confirm: '确定要删除吗？', :method => :delete, :class => 'button' %>
-        <%= link_to '返回列表', admin_participants_path, :class => 'button' %>
+        <% if session[:user_role] != User::RoleVolunteer %>
+          <%= link_to '编辑', edit_admin_participant_path(@participant), :class => 'button' %>
+          <%= link_to '重置密码', reset_password_admin_participant_path(@participant), :confirm => '确定要重置密码吗？', :class => 'button' %>
+          <%= link_to '模拟登录', simulate_signin_admin_participant_path(@participant), :target => '_blank', :class => 'button' %>
+          <%= link_to '删除', [:admin, @participant], confirm: '确定要删除吗？', :method => :delete, :class => 'button' %>
+          <%= link_to '返回列表', admin_participants_path, :class => 'button' %>
+        <% else %>
+          <%= link_to '返回', admin_root_path, :class => 'button' %>
+        <% end %>
       </div>
     </div>
   </div>

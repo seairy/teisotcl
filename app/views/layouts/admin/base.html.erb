@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>第十一届国际汉语教学研讨会管理系统</title>
-    <%= stylesheet_link_tag "meta", "admin", :media => "all" %>
+    <%= stylesheet_link_tag "meta", "admin", "jquery-ui", :media => "all" %>
     <%= javascript_include_tag "application", "/ckeditor/ckeditor.js" %>
     <%= yield :head %>
     <meta http-equiv="pragma" content="no-cache">
@@ -35,6 +35,7 @@
               <li><%= link_to '未签到代表', unregister_admin_participants_path %></li>
             </ul>
           </li>
+          <% if session[:user_role] != User::RoleVolunteer %>
           <li><a href="#">参会者管理<%= image_tag 'admin/navi_arrow.gif' %></a>
             <ul>
               <li><%= link_to '参会者列表', approved_admin_participants_path %></li>
@@ -75,8 +76,10 @@
             <ul>
               <li><%= link_to '用户列表', admin_users_path %></li>
               <li><%= link_to '添加用户', new_admin_user_path %></li>
+              <li><%= link_to '选举模拟', new_admin_election_path %></li>
             </ul>
           </li>
+          <% end %>
           <% end %>
         </ul>
       </div>

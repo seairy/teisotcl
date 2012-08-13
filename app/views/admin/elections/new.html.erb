@@ -1,0 +1,71 @@
+<div id="notice">
+  <h1>模拟选举</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <%= form_tag admin_election_path, :method => :post, :id => 'new_election' do %>
+      <script>
+        $(function() {
+          $("span#voters_slider").slider({
+            value: 280,
+            min: 150,
+            max: 350,
+            slide: function(event, ui) {
+              $("#voters").val(ui.value);
+            }
+          });
+          $("span#passion_slider").slider({
+            value: 50,
+            min: 1,
+            max: 100,
+            slide: function(event, ui) {
+              $("#passion").val(ui.value);
+            }
+          });
+          $("span#leading_by_slider").slider({
+            value: 10,
+            min: 1,
+            max: 50,
+            slide: function(event, ui) {
+              $("#leading_by").val(ui.value);
+            }
+          });
+          $("span#void_slider").slider({
+            value: 5,
+            min: 0,
+            max: 30,
+            slide: function(event, ui) {
+              $("#void").val(ui.value);
+            }
+          });
+        });
+      </script>
+      <fieldset class="form-generic">
+        <legend>选举参数</legend>
+        <ul>
+          <li>
+            <label>投票者：</label><span id="voters_slider" class="slider"></span> <%= text_field_tag :voters, 280, :id => 'voters', :class => 'text-field tiny' %> 人
+          </li>
+          <li>
+            <label>热情度：</label>消极 <span id="passion_slider" class="slider"></span> 积极<%= hidden_field_tag :passion, 50, :id => 'passion', :class => 'text-field tiny' %>
+          </li>
+          <li>
+            <label>首位领先：</label><span id="leading_by_slider" class="slider"></span> <%= text_field_tag :leading_by, 10, :id => 'leading_by', :class => 'text-field tiny' %> 票
+          </li>
+          <li>
+            <label>作废：</label><span id="void_slider" class="slider"></span> <%= text_field_tag :void, 5, :id => 'void', :class => 'text-field tiny' %> 票
+          </li>
+        </ul>
+      </fieldset>
+      <div class="action-generic">
+        <%= link_to '模拟选举', '#', :onclick => "submitForm('new_election')", :class => 'button' %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

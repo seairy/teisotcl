@@ -81,6 +81,7 @@ Teisotcl::Application.routes.draw do
         get :export_thesis_author_participants, :export_nonvoting_participants, :export_approved_participants, :export_submited_participants, :export_participants_with_registration, :export_experts, :export_reviews, :export_bookings
       end
     end
+    resource :election
     match 'excels' => 'excels', :as => :excels
     match 'signin' => 'sessions#new', :as => :signin, :via => [:get]
     match 'signin' => 'sessions#create', :as => :signin, :via => [:post]

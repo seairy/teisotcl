@@ -1,0 +1,29 @@
+<div id="notice">
+  <h1>模拟选举结果</h1>
+</div>
+<div id="side">
+  <%= render "admin/shared/shortcut" %>
+</div>
+<div id="main">
+  <div class="portlet">
+    <div class="title"></div>
+    <div class="content">
+      <fieldset class="form-generic">
+        <legend>选举结果</legend>
+        <ul>
+          <li>
+            <label>参数：</label>投票者<%= @voters %>人，热情度<%= @passion %>，首位领先<%= @leading_by %>票，作废<%= @void %>票，至多<%= @max_votes %>票，实际<%= @current_votes %>票
+          </li>
+          <% @results.each do |result| %>
+          <li>
+            <label><%= result[:name] %>：</label><%= result[:votes] %>票
+          </li>
+          <% end %>
+        </ul>
+      </fieldset>
+      <div class="action-generic">
+        <%= link_to '重新模拟', new_admin_election_path, :class => 'button' %>
+      </div>
+    </div>
+  </div>
+</div>

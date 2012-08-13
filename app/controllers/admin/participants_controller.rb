@@ -1,5 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Admin::ParticipantsController < Admin::BaseController
+  before_filter :editable, :only => [:edit, :update]
   
   def index
     @participants = Participant.order('created_at DESC').paginate :page => params[:page]
@@ -86,18 +87,21 @@ class Admin::ParticipantsController < Admin::BaseController
   def register
     @participant = Participant.find(params[:id])
     @participant.update_attribute(:registered_at, Time.now) if @participant.registered_at.blank?
+    Log.create({ :user_id => session[:user_id], :participant_id => @participant.id, :action => Log::ActionRegister})
     redirect_to admin_participant_path(@participant, :anchor => 'registration')
   end
   
   def pay_fee
     @participant = Participant.find(params[:id])
     @participant.update_attribute(:fee_paid, params[:payment])
+    Log.create({ :user_id => session[:user_id], :participant_id => @participant.id, :action => Log::ActionPayFee})
     redirect_to admin_participant_path(@participant, :anchor => 'registration')
   end
   
   def pay_isclt_fee
     @participant = Participant.find(params[:id])
     @participant.update_attribute(:isclt_fee_paid, params[:payment])
+    Log.create({ :user_id => session[:user_id], :participant_id => @participant.id, :action => Log::ActionPayIscltFee})
     redirect_to admin_participant_path(@participant, :anchor => 'registration')
   end
   
@@ -139,5 +143,11 @@ class Admin::ParticipantsController < Admin::BaseController
       @participant.update_attribute(:tour_tw, true)
     end
     redirect_to admin_participant_path(@participant, :anchor => 'registration')
+  end
+  
+  protected
+  def editable
+    @participant = Participant.find(params[:id])
+    redirect_to [:admin, @participant] if session[:user_role] == User::RoleVolunteer
   end
 end

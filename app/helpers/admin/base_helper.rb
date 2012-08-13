@@ -53,6 +53,7 @@ module Admin::BaseHelper
     when User::RoleAdmin then '管理员'
     when User::RoleLeader then '领导'
     when User::RoleEditor then '编辑'
+    when User::RoleVolunteer then '志愿者'
     end
   end
   
@@ -61,7 +62,7 @@ module Admin::BaseHelper
   end
   
   def user_role_options
-    [['管理员', User::RoleAdmin], ['领导', User::RoleLeader], ['编辑', User::RoleEditor]]
+    [['管理员', User::RoleAdmin], ['领导', User::RoleLeader], ['编辑', User::RoleEditor], ['志愿者', User::RoleVolunteer]]
   end
   
   def human_participant_type_tag participant_attend_as

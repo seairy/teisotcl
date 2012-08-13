@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Participant < ActiveRecord::Base
-  AttendAsThesisAuthor, AttendAsNonvoting, AttendAsTrustee = 1, 2, 3
+  AttendAsThesisAuthor, AttendAsNonvoting, AttendAsTrustee, AttendAsWorker = 1, 2, 3, 4
   has_secure_password
   belongs_to :nationality, :class_name => 'Country'
   belongs_to :teaches_in, :class_name => 'Country'

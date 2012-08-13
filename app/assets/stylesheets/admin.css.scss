@@ -194,6 +194,13 @@ fieldset.form-generic {
           line-height: 20px;
         }
       }
+      span {
+        &.slider {
+          display: inline-block;
+          margin: 0 20px;
+          width: 300px;
+        }
+      }
       &.even {
         background: #F3F3F3;
       }
