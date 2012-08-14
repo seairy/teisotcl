@@ -127,6 +127,9 @@
       <fieldset class="form-generic" id="registration">
         <legend>签到信息</legend>
         <ul>
+          <% if @participant.award? %>
+          <li><label>提示信息：<span class="cred">该代表获奖</span></label></li>
+          <% end %>
           <li>
             <label>签到时间：</label>
             <% if @participant.registered_at.blank? %>
