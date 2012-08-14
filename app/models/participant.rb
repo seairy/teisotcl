@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Participant < ActiveRecord::Base
   AttendAsThesisAuthor, AttendAsNonvoting, AttendAsTrustee, AttendAsWorker = 1, 2, 3, 4
+  AwardFirst, AwardSecond = 1, 2
   has_secure_password
   belongs_to :nationality, :class_name => 'Country'
   belongs_to :teaches_in, :class_name => 'Country'
@@ -39,5 +40,9 @@ class Participant < ActiveRecord::Base
         "[\"#{pa.nationality.name}（#{pa.count}人）\", #{pa.count}]"
       end.join(', ')
     end
+  end
+  
+  def award?
+    !award.blank?
   end
 end
