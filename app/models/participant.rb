@@ -16,6 +16,7 @@ class Participant < ActiveRecord::Base
   validates :email, :format => { :with => /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/, :message => "只能使用有效地址" }, :length => { :maximum => 200 }
   scope :thesis_author, where(['attend_as = ?', AttendAsThesisAuthor])
   scope :nonvoting, where(['attend_as = ?', AttendAsNonvoting])
+  scope :trustee, where(['attend_as = ?', AttendAsTrustee])
   scope :isclt_member, where('isclt_member = 1')
   scope :tour_museum, where('tour_museum = 1')
   scope :tour_tw, where('tour_tw = 1')
