@@ -1,6 +1,6 @@
 # -*- encoding : utf-8 -*-
 class Admin::ParticipantsController < Admin::BaseController
-  before_filter :editable, :only => [:edit, :update]
+  before_filter :editable, :only => [:edit, :update, :destroy]
   
   def index
     @participants = Participant.order('created_at DESC').paginate :page => params[:page]
